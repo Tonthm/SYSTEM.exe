@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1860431598145105204}
   - component: {fileID: 82101737723468789}
   - component: {fileID: 7319059341063349370}
-  - component: {fileID: 5679842113552309459}
+  - component: {fileID: 6226134237352275369}
   m_Layer: 0
   m_Name: DataFragment
   m_TagString: Fragment
@@ -145,7 +145,7 @@ PolygonCollider2D:
       - {x: 0.5, y: -0.5}
       - {x: 0.5, y: 0.5}
   m_UseDelaunayMesh: 1
---- !u!114 &5679842113552309459
+--- !u!114 &6226134237352275369
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,6 +154,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6752170078945371596}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b0cbb341ae6fec4babbc65cea1647ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 018bbb21f2dd98443b2001f525017d41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DataFragment
+  blinkWarningTime: 5
+  blinkInterval: 0.15
+  spriteRenderer: {fileID: 82101737723468789}
