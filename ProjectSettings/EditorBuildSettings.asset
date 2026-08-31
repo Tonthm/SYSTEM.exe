@@ -7,6 +7,24 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/Bootstrap.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
+    guid: 9cc9afeadb441a64280c27be481b69f1
+  - enabled: 1
+    path: Assets/Scenes/Sector_Tutorial.unity
+    guid: 0422cc7a479aaaa45835c5102db9ecd2
+  - enabled: 1
+    path: Assets/Scenes/Sector_Firewall.unity
+    guid: 70180acd61890ca41958578ad4f0fdba
+  - enabled: 1
+    path: Assets/Scenes/Sector_RAM.unity
+    guid: 3b71b2a174f69ea4fbd174ff4b2188ad
+  - enabled: 1
+    path: Assets/Scenes/Sector_Registry.unity
+    guid: 1c852fe786da96744af2fdad040b7f3b
+  - enabled: 1
+    path: Assets/Scenes/Sector_Core_NULL.unity
+    guid: bdba8447b30c764449a042d3b000d441
+  - enabled: 1
+    path: Assets/Scenes/VictoryScene.unity
+    guid: 05fc6bb0f89394b4d96970d754d7a826
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

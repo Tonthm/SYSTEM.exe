@@ -13,5 +13,6 @@ public enum BulletPatternType
     Spiral,         // ยิงหมุนเป็นเกลียว
     SpreadCone,     // ยิงกระจายเป็นมุมแคบไปทางผู้เล่น
     WallSweep,      // กระสุนเรียงเป็นแนวกวาดพื้นที่
-    Collision       // ไม่ใช่กระสุน — ตายจากการชนตัวศัตรูโดยตรง (ใช้กับ ContactDamage)
+    Collision,      // ไม่ใช่กระสุน — ตายจากการชนตัวศัตรูโดยตรง (ใช้กับ ContactDamage)
+    LaserBeam       // ลำแสงต่อเนื่อง (ใช้กับ Registry Boss)
 }

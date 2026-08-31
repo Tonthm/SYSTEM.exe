@@ -27,6 +27,10 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D rb;
     private float timer;
 
+    /// <summary>กระสุนนี้เป็นของผู้เล่นหรือไม่ (ให้กำแพงไฟของบอสเช็คว่าควรเผาทิ้งไหม)</summary>
+    public bool IsPlayerBullet => isPlayerBullet;
+    public BulletPatternType PatternType => patternType;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

@@ -283,7 +283,7 @@ MonoBehaviour:
   splitPrefab: {fileID: 8042949793883857633}
   splitCount: 2
   generation: 0
-  maxGeneration: 2
+  maxGeneration: 1
   splitScale: 0.65
   splitHealthMultiplier: 0.4
   splitXpMultiplier: 0.5
