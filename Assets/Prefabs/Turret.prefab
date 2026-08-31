@@ -27,8 +27,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0.5, y: 0, z: 0}
-  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
-  m_ConstrainProportionsScale: 1
+  m_LocalScale: {x: 0.25, y: 0.25, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2631080069317097708}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -157,7 +157,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &9193028004220417623
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -255,7 +255,7 @@ MonoBehaviour:
   facing: {fileID: 2631080069317097708}
   arcAngle: 140
   blockedDamageMultiplier: 0
-  blockEffectPrefab: {fileID: 0}
+  blockEffectPrefab: {fileID: 5670908484303250837, guid: 24211e0b57108ac48acdd62d48a4a65c, type: 3}
   shieldVisual: {fileID: 2421620511504796749}
   flashColor: {r: 1, g: 0.9, b: 0.3, a: 1}
   flashDuration: 0.12

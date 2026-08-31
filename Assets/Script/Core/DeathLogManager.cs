@@ -66,6 +66,7 @@ public class DeathLogManager : MonoBehaviour
             case BulletPatternType.SpreadCone: return "GhostProcess.exe stopped: Cone Access Violation";
             case BulletPatternType.WallSweep: return "GhostProcess.exe stopped: Sweep Segmentation Fault";
             case BulletPatternType.Collision: return "GhostProcess.exe stopped: Memory Access Violation";
+            case BulletPatternType.LaserBeam: return "GhostProcess.exe stopped: Registry Key Overwritten";
             default: return "GhostProcess.exe stopped: Unknown Exception";
         }
     }
@@ -91,6 +92,7 @@ public class DeathLogManager : MonoBehaviour
             case BulletPatternType.SpreadCone: return "spread cone";
             case BulletPatternType.WallSweep: return "wall sweep";
             case BulletPatternType.Collision: return "collision";
+            case BulletPatternType.LaserBeam: return "laser beam";
             default: return "unknown fault";
         }
     }

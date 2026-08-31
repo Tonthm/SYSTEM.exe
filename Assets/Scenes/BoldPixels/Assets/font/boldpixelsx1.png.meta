@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: c6114b73a6689b648b10af519a6f0e45
+AssetOrigin:
+  serializedVersion: 1
+  productId: 332078
+  packageName: BoldPixels
+  packageVersion: 1.5.0
+  assetPath: Assets/BoldPixels/Assets/font/boldpixelsx1.png
+  uploadId: 785910
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -154,10 +161,3 @@ TextureImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 332078
-  packageName: BoldPixels
-  packageVersion: 1.5.0
-  assetPath: Assets/BoldPixels/Assets/font/boldpixelsx1.png
-  uploadId: 785910
