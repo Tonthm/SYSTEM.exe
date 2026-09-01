@@ -90,17 +90,59 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      propertyPath: portal
+      value: 
+      objectReference: {fileID: 1702527889185629576}
+    - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
       propertyPath: groupId
       value: UL
+      objectReference: {fileID: 0}
+    - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      propertyPath: scatterRadius
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 592783150501024048, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1702527889185629576}
   m_SourcePrefab: {fileID: 100100000, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
 --- !u!4 &495755092987929783 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4577927303189727671, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+  m_PrefabInstance: {fileID: 4136932299290537216}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3553528275047169072 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 592783150501024048, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+  m_PrefabInstance: {fileID: 4136932299290537216}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1702527889185629576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3553528275047169072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e423293a76aa847adb48772ec3902e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPortal
+  portalVisual: {fileID: 495755092987929783}
+  portalRenderer: {fileID: 7038864994670089017}
+  idleScale: 0.35
+  idleColor: {r: 0.05, g: 0.05, b: 0.08, a: 0.85}
+  idlePulseAmount: 0.06
+  idlePulseSpeed: 2
+  openScale: 1.1
+  openColor: {r: 0.6, g: 0.15, b: 0.9, a: 1}
+  closeDuration: 0.35
+--- !u!212 &7038864994670089017 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6396875545773309497, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
   m_PrefabInstance: {fileID: 4136932299290537216}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6500333924023471794
@@ -156,14 +198,56 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      propertyPath: portal
+      value: 
+      objectReference: {fileID: 8649001767478071686}
+    - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
       propertyPath: groupId
       value: DC
+      objectReference: {fileID: 0}
+    - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      propertyPath: scatterRadius
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 592783150501024048, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8649001767478071686}
   m_SourcePrefab: {fileID: 100100000, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+--- !u!212 &212679813203521675 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6396875545773309497, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+  m_PrefabInstance: {fileID: 6500333924023471794}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5912151405055205250 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 592783150501024048, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+  m_PrefabInstance: {fileID: 6500333924023471794}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8649001767478071686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5912151405055205250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e423293a76aa847adb48772ec3902e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPortal
+  portalVisual: {fileID: 7331231151995520773}
+  portalRenderer: {fileID: 212679813203521675}
+  idleScale: 0.35
+  idleColor: {r: 0.05, g: 0.05, b: 0.08, a: 0.85}
+  idlePulseAmount: 0.06
+  idlePulseSpeed: 2
+  openScale: 1.1
+  openColor: {r: 0.6, g: 0.15, b: 0.9, a: 1}
+  closeDuration: 0.35
 --- !u!4 &7331231151995520773 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4577927303189727671, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
@@ -222,14 +306,56 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      propertyPath: portal
+      value: 
+      objectReference: {fileID: 3310872436532687444}
+    - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
       propertyPath: groupId
       value: UR
+      objectReference: {fileID: 0}
+    - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      propertyPath: scatterRadius
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 592783150501024048, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3310872436532687444}
   m_SourcePrefab: {fileID: 100100000, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+--- !u!212 &411576974917639811 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6396875545773309497, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+  m_PrefabInstance: {fileID: 6733008407680344250}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6145599688888430986 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 592783150501024048, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+  m_PrefabInstance: {fileID: 6733008407680344250}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3310872436532687444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6145599688888430986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e423293a76aa847adb48772ec3902e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPortal
+  portalVisual: {fileID: 7131559797151688973}
+  portalRenderer: {fileID: 411576974917639811}
+  idleScale: 0.35
+  idleColor: {r: 0.05, g: 0.05, b: 0.08, a: 0.85}
+  idlePulseAmount: 0.06
+  idlePulseSpeed: 2
+  openScale: 1.1
+  openColor: {r: 0.6, g: 0.15, b: 0.9, a: 1}
+  closeDuration: 0.35
 --- !u!4 &7131559797151688973 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4577927303189727671, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
@@ -288,14 +414,56 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      propertyPath: portal
+      value: 
+      objectReference: {fileID: 7228117210681862025}
+    - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
       propertyPath: groupId
       value: DL
+      objectReference: {fileID: 0}
+    - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      propertyPath: scatterRadius
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 592783150501024048, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7228117210681862025}
   m_SourcePrefab: {fileID: 100100000, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+--- !u!212 &575796920405042565 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6396875545773309497, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+  m_PrefabInstance: {fileID: 6862325113538403260}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6269606029797984908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 592783150501024048, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+  m_PrefabInstance: {fileID: 6862325113538403260}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7228117210681862025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6269606029797984908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e423293a76aa847adb48772ec3902e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPortal
+  portalVisual: {fileID: 6968177986744701451}
+  portalRenderer: {fileID: 575796920405042565}
+  idleScale: 0.35
+  idleColor: {r: 0.05, g: 0.05, b: 0.08, a: 0.85}
+  idlePulseAmount: 0.06
+  idlePulseSpeed: 2
+  openScale: 1.1
+  openColor: {r: 0.6, g: 0.15, b: 0.9, a: 1}
+  closeDuration: 0.35
 --- !u!4 &6968177986744701451 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4577927303189727671, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
@@ -354,19 +522,61 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      propertyPath: portal
+      value: 
+      objectReference: {fileID: 3958683044624379776}
+    - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
       propertyPath: groupId
       value: UC
+      objectReference: {fileID: 0}
+    - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      propertyPath: scatterRadius
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 592783150501024048, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3958683044624379776}
   m_SourcePrefab: {fileID: 100100000, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+--- !u!212 &3074554632839208900 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6396875545773309497, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+  m_PrefabInstance: {fileID: 8245324887461913085}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5612989182599587914 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4577927303189727671, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
   m_PrefabInstance: {fileID: 8245324887461913085}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8814875355847962829 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 592783150501024048, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+  m_PrefabInstance: {fileID: 8245324887461913085}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3958683044624379776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8814875355847962829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e423293a76aa847adb48772ec3902e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPortal
+  portalVisual: {fileID: 5612989182599587914}
+  portalRenderer: {fileID: 3074554632839208900}
+  idleScale: 0.35
+  idleColor: {r: 0.05, g: 0.05, b: 0.08, a: 0.85}
+  idlePulseAmount: 0.06
+  idlePulseSpeed: 2
+  openScale: 1.1
+  openColor: {r: 0.6, g: 0.15, b: 0.9, a: 1}
+  closeDuration: 0.35
 --- !u!1001 &9110342745334102847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -420,16 +630,58 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      propertyPath: portal
+      value: 
+      objectReference: {fileID: 176989191921426402}
+    - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
       propertyPath: groupId
       value: DR
+      objectReference: {fileID: 0}
+    - target: {fileID: 6717302727831095163, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      propertyPath: scatterRadius
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 592783150501024048, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 176989191921426402}
   m_SourcePrefab: {fileID: 100100000, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+--- !u!212 &2785533681563944198 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6396875545773309497, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+  m_PrefabInstance: {fileID: 9110342745334102847}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4748589328670503560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4577927303189727671, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
   m_PrefabInstance: {fileID: 9110342745334102847}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8527439825186417167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 592783150501024048, guid: d8367bb940d279d49a11b43d69d5031b, type: 3}
+  m_PrefabInstance: {fileID: 9110342745334102847}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &176989191921426402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8527439825186417167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40e423293a76aa847adb48772ec3902e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpawnPortal
+  portalVisual: {fileID: 4748589328670503560}
+  portalRenderer: {fileID: 2785533681563944198}
+  idleScale: 0.35
+  idleColor: {r: 0.05, g: 0.05, b: 0.08, a: 0.85}
+  idlePulseAmount: 0.06
+  idlePulseSpeed: 2
+  openScale: 1.1
+  openColor: {r: 0.6, g: 0.15, b: 0.9, a: 1}
+  closeDuration: 0.35

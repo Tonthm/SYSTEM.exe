@@ -47,9 +47,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 30
   xpReward: 0
-  destroyOnDeath: 1
+  destroyOnDeath: 0
   destroyDelay: 0
   shield: {fileID: 0}
+  deathEffectPrefab: {fileID: 5670908484303250837, guid: 29e893bb7e4d6ea4aa876c003ab05599, type: 3}
+  deathEffectLifetime: 2
   staleIndicator: {fileID: 0}
   tintTargets: []
   staleTint: {r: 0.6, g: 0.6, b: 0.7, a: 1}
@@ -69,4 +71,4 @@ MonoBehaviour:
   segmentCount: 8
   initialSpacing: 1.78
   initialBodyDirection: {x: 1, y: 0}
-  headHealthMultiplier: 3
+  headHealthMultiplier: 2

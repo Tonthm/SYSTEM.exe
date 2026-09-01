@@ -206,6 +206,8 @@ MonoBehaviour:
   destroyOnDeath: 1
   destroyDelay: 0
   shield: {fileID: 0}
+  deathEffectPrefab: {fileID: 5670908484303250837, guid: 29e893bb7e4d6ea4aa876c003ab05599, type: 3}
+  deathEffectLifetime: 2
   staleIndicator: {fileID: 0}
   tintTargets: []
   staleTint: {r: 0.6, g: 0.6, b: 0.7, a: 1}

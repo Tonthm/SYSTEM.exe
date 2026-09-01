@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &130237701 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4264236988880702659, guid: 12e586e9788ac7246b84586ca60ce382, type: 3}
+  m_PrefabInstance: {fileID: 1759998748}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &258851769
 GameObject:
   m_ObjectHideFlags: 0
@@ -510,12 +515,12 @@ MonoBehaviour:
     isBossWave: 0
     groups:
     - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
-      count: 6
+      count: 3
       startDelay: 0
       spawnInterval: 1.2
       spawnPointGroupId: UL
     - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
-      count: 6
+      count: 3
       startDelay: 0
       spawnInterval: 1.2
       spawnPointGroupId: UR
@@ -526,17 +531,17 @@ MonoBehaviour:
     isBossWave: 0
     groups:
     - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
-      count: 8
+      count: 3
       startDelay: 0
       spawnInterval: 1
       spawnPointGroupId: UL
     - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
-      count: 8
+      count: 2
       startDelay: 0
       spawnInterval: 1
       spawnPointGroupId: UC
     - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
-      count: 8
+      count: 3
       startDelay: 0
       spawnInterval: 1
       spawnPointGroupId: UR
@@ -558,6 +563,147 @@ MonoBehaviour:
       spawnPointGroupId: UR
     formatWarningOnStart: 0
     formatWarningDuration: 0
+  - waveName: Mixed Signal
+    duration: 0
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 5
+      startDelay: 0
+      spawnInterval: 1
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 5
+      startDelay: 0
+      spawnInterval: 1
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 2
+      startDelay: 3
+      spawnInterval: 1.5
+      spawnPointGroupId: DC
+    formatWarningOnStart: 0
+    formatWarningDuration: 0
+  - waveName: Firewall Probe
+    duration: 0
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 4
+      startDelay: 2
+      spawnInterval: 1.2
+      spawnPointGroupId: DC
+    formatWarningOnStart: 0
+    formatWarningDuration: 0
+  - waveName: Cross Fire
+    duration: 0
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 3
+      startDelay: 2
+      spawnInterval: 1.2
+      spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 3
+      startDelay: 2
+      spawnInterval: 1.2
+      spawnPointGroupId: DR
+    formatWarningOnStart: 0
+    formatWarningDuration: 0
+  - waveName: Packet Flood
+    duration: 0
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 0
+      spawnInterval: 0.5
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 0
+      spawnInterval: 0.5
+      spawnPointGroupId: UC
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 0
+      spawnInterval: 0.5
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 0
+      spawnInterval: 0.5
+      spawnPointGroupId: DC
+    formatWarningOnStart: 0
+    formatWarningDuration: 0
+  - waveName: Kernel Panic
+    duration: 0
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UC
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 2
+      spawnInterval: 0.8
+      spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 2
+      spawnInterval: 0.8
+      spawnPointGroupId: DR
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 3
+      startDelay: 5
+      spawnInterval: 1
+      spawnPointGroupId: DC
+    formatWarningOnStart: 0
+    formatWarningDuration: 0
+  - waveName: FIREWALL GUARDIAN
+    duration: 0
+    isBossWave: 1
+    groups:
+    - enemyPrefab: {fileID: 4712429826374605306, guid: eb83a157cbdc61e43a3f522e9b704caa, type: 3}
+      count: 1
+      startDelay: 3
+      spawnInterval: 0
+      spawnPointGroupId: BOSS
+    formatWarningOnStart: 1
+    formatWarningDuration: 3
   startDelay: 2
   spawnTelegraphDuration: 0.6
   advanceEarlyWhenCleared: 1
@@ -1011,7 +1157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   playerObject: {fileID: 1480350643}
   currentCheckpoint: {fileID: 1338880289}
-  useManualReborn: 0
+  useManualReborn: 1
   respawnDelay: 3
   rebornDelay: 0.3
   restartWaveOnDeath: 1
@@ -1643,7 +1789,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 4264236988880702659, guid: 12e586e9788ac7246b84586ca60ce382, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1862634223}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12e586e9788ac7246b84586ca60ce382, type: 3}
 --- !u!1001 &1780883109
@@ -1767,6 +1916,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
+--- !u!4 &1862634223 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+  m_PrefabInstance: {fileID: 1929572830}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1881160664
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,6 +1961,63 @@ Transform:
   - {fileID: 1363811339}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1929572830
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 130237701}
+    m_Modifications:
+    - target: {fileID: 592783150501024048, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_Name
+      value: BOSS
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
 --- !u!1 &1943140785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1965,8 +2176,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FragmentInheritanceManager
   dataFragmentPrefab: {fileID: 6752170078945371596, guid: 114fa698461b968479c72c3a76f83c5b, type: 3}
-  fragmentLifetime: 30
-  extendedLifetimeBonus: 15
+  fragmentLifetime: 5
+  extendedLifetimeBonus: 2
   dropEmptyFragments: 0
 --- !u!1 &2114061936
 GameObject:

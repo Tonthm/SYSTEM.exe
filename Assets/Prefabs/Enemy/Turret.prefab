@@ -210,7 +210,9 @@ MonoBehaviour:
   xpReward: 25
   destroyOnDeath: 1
   destroyDelay: 0
-  shield: {fileID: 0}
+  shield: {fileID: 4220822498162917418}
+  deathEffectPrefab: {fileID: 5670908484303250837, guid: 29e893bb7e4d6ea4aa876c003ab05599, type: 3}
+  deathEffectLifetime: 2
   staleIndicator: {fileID: 0}
   tintTargets: []
   staleTint: {r: 0.6, g: 0.6, b: 0.7, a: 1}
@@ -253,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DirectionalShield
   facing: {fileID: 2631080069317097708}
-  arcAngle: 140
+  arcAngle: 60
   blockedDamageMultiplier: 0
   blockEffectPrefab: {fileID: 5670908484303250837, guid: 24211e0b57108ac48acdd62d48a4a65c, type: 3}
   shieldVisual: {fileID: 2421620511504796749}
@@ -280,11 +282,11 @@ MonoBehaviour:
   burstDuration: 2
   restDuration: 1.8
   lockRotationWhileFiring: 1
-  chargeIndicator: {fileID: 0}
+  chargeIndicator: {fileID: 2421620511504796749}
   chargeColor: {r: 1, g: 0.3, b: 0.2, a: 1}
   useFormatWarning: 0
-  shield: {fileID: 0}
-  dropShieldWhileFiring: 1
+  shield: {fileID: 4220822498162917418}
+  dropShieldWhileFiring: 0
 --- !u!212 &8212803632097020006
 SpriteRenderer:
   serializedVersion: 3

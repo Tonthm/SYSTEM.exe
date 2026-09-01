@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3491f9fe1e06e24eb1d7a70d73fe96a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 300
+  maxHealth: 100
   xpReward: 40
   destroyOnDeath: 1
   destroyDelay: 0
@@ -209,13 +209,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66d74fd432ba86c4d8513b49758ef741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CentipedeSegment
-  moveSpeed: 3.5
+  moveSpeed: 6
   spacing: 1.78
-  headTurnSpeed: 70
+  headTurnSpeed: 100
   wobbleAmplitude: 25
-  wobbleSpeed: 2.5
+  wobbleSpeed: 5
+  keepInsideArena: 1
+  arenaCenter: {x: 0, y: 0}
+  arenaHalfSize: {x: 9, y: 5}
+  outsideTolerance: 1.5
+  returnTurnSpeed: 220
   bulletPrefab: {fileID: 7704569962785406794, guid: d0f0da74aa816db4db480bf1ebd4ec23, type: 3}
-  fireCooldown: 2
+  fireCooldown: 1.5
   bulletSpeed: 5
   bulletDamage: 10
   bulletLifetime: 4
@@ -266,7 +271,7 @@ Transform:
   m_GameObject: {fileID: 4464715827786602103}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.56, y: 0, z: 0}
+  m_LocalPosition: {x: 0.56, y: 0, z: -0.1}
   m_LocalScale: {x: 0.4669, y: 0.4669, z: 0.4669}
   m_ConstrainProportionsScale: 1
   m_Children: []

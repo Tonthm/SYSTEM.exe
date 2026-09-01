@@ -387,8 +387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FragmentInheritanceManager
   dataFragmentPrefab: {fileID: 6752170078945371596, guid: 114fa698461b968479c72c3a76f83c5b, type: 3}
-  fragmentLifetime: 30
-  extendedLifetimeBonus: 15
+  fragmentLifetime: 5
+  extendedLifetimeBonus: 2
   dropEmptyFragments: 0
 --- !u!1001 &223411742
 PrefabInstance:
@@ -732,7 +732,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7215411899201018660, guid: ceccaa903abdeb24aa489baab4862f05, type: 3}
   m_PrefabInstance: {fileID: 608742011}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1069109425}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2c11883d3e63bd4c972b257111a77de, type: 3}
@@ -831,6 +831,63 @@ MonoBehaviour:
     cost: 550
     requiresSkillId: 
     unlocked: 0
+--- !u!1001 &668595737
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 592783150501024048, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_Name
+      value: BOSS
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
 --- !u!1 &679629175
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,7 +932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5519ec0c91e203b4d8d3c9b5f8f5edb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  playerObject: {fileID: 0}
+  playerObject: {fileID: 1069109425}
   currentCheckpoint: {fileID: 1386717640}
   useManualReborn: 1
   respawnDelay: 3
@@ -1164,6 +1221,11 @@ MonoBehaviour:
   - Sector_Core_NULL
   storyUnlockThreshold: 0
   victorySceneName: VictoryScene
+--- !u!1 &1069109425 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 275914288661829899, guid: ceccaa903abdeb24aa489baab4862f05, type: 3}
+  m_PrefabInstance: {fileID: 608742011}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1079394607
 GameObject:
   m_ObjectHideFlags: 0
@@ -1390,15 +1452,344 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
   waves:
-  - waveName: 
+  - waveName: Key Lookup
     duration: 60
     isBossWave: 0
     groups:
-    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
-      count: 10
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
       startDelay: 0
-      spawnInterval: 3
+      spawnInterval: 0
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 4
+      startDelay: 2
+      spawnInterval: 1.2
+      spawnPointGroupId: DC
+    formatWarningOnStart: 0
+    formatWarningDuration: 0
+  - waveName: Nested Keys
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0.5
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0.5
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0.5
       spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0.5
+      spawnPointGroupId: DR
+    formatWarningOnStart: 1
+    formatWarningDuration: 0
+  - waveName: Access Denied
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UC
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 4
+      startDelay: 2
+      spawnInterval: 1
+      spawnPointGroupId: DC
+    formatWarningOnStart: 1
+    formatWarningDuration: 0
+  - waveName: Corrupted Entry
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 4
+      startDelay: 0.7
+      spawnInterval: 1
+      spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 4
+      startDelay: 0.7
+      spawnInterval: 1
+      spawnPointGroupId: DR
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 3
+      startDelay: 3
+      spawnInterval: 1
+      spawnPointGroupId: DC
+    formatWarningOnStart: 1
+    formatWarningDuration: 0
+  - waveName: Permission Error
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: DR
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 2
+      spawnInterval: 0.8
+      spawnPointGroupId: UC
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 2
+      spawnInterval: 0.8
+      spawnPointGroupId: DC
+    formatWarningOnStart: 1
+    formatWarningDuration: 0
+  - waveName: Hive Collapse
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: DR
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 2
+      startDelay: 2
+      spawnInterval: 0.8
+      spawnPointGroupId: UC
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 3
+      startDelay: 2
+      spawnInterval: 0.8
+      spawnPointGroupId: DC
+    formatWarningOnStart: 1
+    formatWarningDuration: 0
+  - waveName: Recursive Loop
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 0
+      spawnInterval: 0.4
+      spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 0
+      spawnInterval: 0.4
+      spawnPointGroupId: DR
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 0
+      spawnInterval: 0.4
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 0
+      spawnInterval: 0.4
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 0.4
+      spawnPointGroupId: UC
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 0.4
+      spawnPointGroupId: DC
+    formatWarningOnStart: 1
+    formatWarningDuration: 0
+  - waveName: Write Protected
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: DR
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UC
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 4
+      startDelay: 2
+      spawnInterval: 0.8
+      spawnPointGroupId: DC
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 4
+      spawnInterval: 0.6
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 4
+      spawnInterval: 0.6
+      spawnPointGroupId: UR
+    formatWarningOnStart: 1
+    formatWarningDuration: 0
+  - waveName: Registry Panic
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: DR
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UC
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 2
+      startDelay: 1
+      spawnInterval: 0.5
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 2
+      startDelay: 1
+      spawnInterval: 0.5
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 1
+      startDelay: 1
+      spawnInterval: 0.5
+      spawnPointGroupId: UC
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 1
+      startDelay: 1
+      spawnInterval: 0.5
+      spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 1
+      startDelay: 1
+      spawnInterval: 0.5
+      spawnPointGroupId: DU
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 1
+      startDelay: 1
+      spawnInterval: 0.5
+      spawnPointGroupId: DR
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 1
+      startDelay: 3
+      spawnInterval: 0.8
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 1
+      startDelay: 3
+      spawnInterval: 0.8
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 1
+      startDelay: 3
+      spawnInterval: 0.8
+      spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 1
+      startDelay: 3
+      spawnInterval: 0.8
+      spawnPointGroupId: DU
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 1
+      startDelay: 3
+      spawnInterval: 0.8
+      spawnPointGroupId: DR
+    formatWarningOnStart: 1
+    formatWarningDuration: 0
+  - waveName: REGISTRY GUARDIAN
+    duration: 60
+    isBossWave: 1
+    groups:
+    - enemyPrefab: {fileID: 242600636246400827, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      count: 1
+      startDelay: 3
+      spawnInterval: 0
+      spawnPointGroupId: BOSS
     formatWarningOnStart: 1
     formatWarningDuration: 0
   startDelay: 2
@@ -1412,7 +1803,7 @@ MonoBehaviour:
   overclockSkillMultiplier: 2
   stalePenaltyMultiplier: 0.5
   stackStalePenalty: 0
-  enemyHealthMultiplier: 1
+  enemyHealthMultiplier: 2
   enemyXpMultiplier: 1
   exitTrigger: {fileID: 134790198}
   autoClearSectorOnFinish: 0
@@ -2040,3 +2431,4 @@ SceneRoots:
   - {fileID: 2121098124}
   - {fileID: 1087337086}
   - {fileID: 608742011}
+  - {fileID: 668595737}

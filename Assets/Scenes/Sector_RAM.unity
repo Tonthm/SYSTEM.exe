@@ -539,15 +539,254 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveManager
   waves:
-  - waveName: 
+  - waveName: Memory Read
     duration: 60
     isBossWave: 0
     groups:
     - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
-      count: 10
+      count: 2
       startDelay: 0
-      spawnInterval: 3
+      spawnInterval: 1.2
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 1.2
+      spawnPointGroupId: UR
+    formatWarningOnStart: 0
+    formatWarningDuration: 0
+  - waveName: Cache Miss
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 1
+      spawnPointGroupId: DR
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 1
       spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 4
+      startDelay: 2
+      spawnInterval: 1
+      spawnPointGroupId: UC
+    formatWarningOnStart: 0
+    formatWarningDuration: 0
+  - waveName: Data Stream
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 0.8
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 3
+      startDelay: 0
+      spawnInterval: 0.8
+      spawnPointGroupId: UC
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 0.8
+      spawnPointGroupId: UR
+    formatWarningOnStart: 0
+    formatWarningDuration: 0
+  - waveName: Buffer Fill
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 0
+      spawnInterval: 0.6
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 0
+      spawnInterval: 0.6
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 0.6
+      spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 0.6
+      spawnPointGroupId: DR
+    formatWarningOnStart: 0
+    formatWarningDuration: 0
+  - waveName: Page Fault
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UC
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: DC
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 1
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 1
+      spawnPointGroupId: UR
+    formatWarningOnStart: 0
+    formatWarningDuration: 0
+  - waveName: Swap Thrash
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 0.8
+      spawnPointGroupId: UC
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 3
+      startDelay: 0
+      spawnInterval: 0.8
+      spawnPointGroupId: DC
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 1
+      spawnInterval: 0.8
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 3
+      startDelay: 1
+      spawnInterval: 0.8
+      spawnPointGroupId: UR
+    formatWarningOnStart: 0
+    formatWarningDuration: 0
+  - waveName: Memory Leak
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 0.45
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0.45
+      spawnPointGroupId: UC
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 0.45
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 0.45
+      spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 0.45
+      spawnPointGroupId: DR
+    formatWarningOnStart: 0
+    formatWarningDuration: 0
+  - waveName: Stack Overflow
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UC
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: DC
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 2
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: DR
+    formatWarningOnStart: 0
+    formatWarningDuration: 0
+  - waveName: Out Of Memory
+    duration: 60
+    isBossWave: 0
+    groups:
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UL
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: UR
+    - enemyPrefab: {fileID: 4167394511259482878, guid: 772908932fe55b94eb64de0a51171231, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: DC
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 4
+      startDelay: 0
+      spawnInterval: 0.6
+      spawnPointGroupId: DL
+    - enemyPrefab: {fileID: 8042949793883857633, guid: da2fbaeba65cb7c4abcc645321ab4319, type: 3}
+      count: 4
+      startDelay: 0
+      spawnInterval: 0.6
+      spawnPointGroupId: DR
+    - enemyPrefab: {fileID: 8198580924704879931, guid: 93d04d241043e6a40b4fbcb0e95869a9, type: 3}
+      count: 4
+      startDelay: 0
+      spawnInterval: 0.9
+      spawnPointGroupId: UC
+    formatWarningOnStart: 0
+    formatWarningDuration: 0
+  - waveName: RAM GUARDIAN
+    duration: 60
+    isBossWave: 1
+    groups:
+    - enemyPrefab: {fileID: 5446242241765984979, guid: ed03a624ca6463c4981748beac8bf326, type: 3}
+      count: 1
+      startDelay: 0
+      spawnInterval: 0
+      spawnPointGroupId: BOSS
     formatWarningOnStart: 1
     formatWarningDuration: 0
   startDelay: 2
@@ -561,7 +800,7 @@ MonoBehaviour:
   overclockSkillMultiplier: 2
   stalePenaltyMultiplier: 0.5
   stackStalePenalty: 0
-  enemyHealthMultiplier: 1
+  enemyHealthMultiplier: 1.5
   enemyXpMultiplier: 1
   exitTrigger: {fileID: 1058980112}
   autoClearSectorOnFinish: 0
@@ -952,6 +1191,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1001 &1276990503
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 592783150501024048, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_Name
+      value: BOSS
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.66
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
 --- !u!4 &1338880289 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8812126478684412275, guid: 3add078391b79d4419726433866ba842, type: 3}
@@ -1894,8 +2190,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FragmentInheritanceManager
   dataFragmentPrefab: {fileID: 6752170078945371596, guid: 114fa698461b968479c72c3a76f83c5b, type: 3}
-  fragmentLifetime: 30
-  extendedLifetimeBonus: 15
+  fragmentLifetime: 5
+  extendedLifetimeBonus: 2
   dropEmptyFragments: 0
 --- !u!1 &2114061936
 GameObject:
@@ -2036,3 +2332,4 @@ SceneRoots:
   - {fileID: 884043785}
   - {fileID: 1450345050}
   - {fileID: 354862823}
+  - {fileID: 1276990503}

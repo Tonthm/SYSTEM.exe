@@ -23,6 +23,12 @@ public class EnemyHealth : MonoBehaviour
     [Tooltip("โล่กันดาเมจตามทิศทาง — เว้นว่างจะหาบน GameObject นี้เอง")]
     [SerializeField] private DirectionalShield shield;
 
+    [Header("Death Effect")]
+    [Tooltip("Particle ที่เกิดตอนศัตรูตาย")]
+    [SerializeField] private GameObject deathEffectPrefab;
+    [Tooltip("ทำลาย particle ทิ้งหลังกี่วินาที (0 = ไม่ทำลาย ให้ตัว particle จัดการเอง)")]
+    [SerializeField] private float deathEffectLifetime = 2f;
+
     [Header("Stale (ค้างข้าม wave)")]
     [Tooltip("ตัวบอกภาพว่าศัตรูตัวนี้ค้างข้าม wave มาแล้ว (ไอคอน/สีจาง) — ไม่บังคับ")]
     [SerializeField] private GameObject staleIndicator;
@@ -40,6 +46,9 @@ public class EnemyHealth : MonoBehaviour
 
     /// <summary>ศัตรูตัวนี้ค้างข้าม wave มาแล้วหรือยัง (XP ถูกลด)</summary>
     public bool IsStale { get; private set; }
+
+    /// <summary>อมตะชั่วคราว — ใช้กับบอสที่ตีไม่ได้ระหว่างท่าโจมตี (Registry Boss)</summary>
+    public bool IsInvulnerable { get; private set; }
     /// <summary>XP จริงที่จะได้ถ้าฆ่าตอนนี้</summary>
     public int EffectiveXpReward => Mathf.Max(0, Mathf.RoundToInt(xpReward * xpMultiplier));
 
@@ -56,6 +65,21 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = maxHealth;
         if (shield == null) shield = GetComponent<DirectionalShield>();
         if (staleIndicator != null) staleIndicator.SetActive(false);
+    }
+
+    /// <summary>เปิด/ปิดสถานะอมตะ — ระหว่างเปิด ดาเมจทุกอย่างถูกกันหมดและยิง OnDamageBlocked</summary>
+    public void SetInvulnerable(bool value)
+    {
+        IsInvulnerable = value;
+    }
+
+    /// <summary>ฆ่าทันทีโดยข้ามทั้งโล่และสถานะอมตะ (ใช้กับตัวนับของบอสหลายส่วน)</summary>
+    public void Kill()
+    {
+        if (isDead) return;
+        currentHealth = 0f;
+        OnHealthChanged?.Invoke(0f, maxHealth);
+        Die();
     }
 
     /// <summary>ให้สคริปต์อื่น (เช่น NullExeBoss) สั่งไม่ให้ทำลายตัวเองทันทีที่ตาย</summary>
@@ -110,6 +134,12 @@ public class EnemyHealth : MonoBehaviour
     {
         if (isDead) return;
 
+        if (IsInvulnerable)
+        {
+            OnDamageBlocked?.Invoke(hitPoint);
+            return;
+        }
+
         if (shield != null)
         {
             float multiplier = shield.GetDamageMultiplier(hitPoint);
@@ -141,6 +171,12 @@ public class EnemyHealth : MonoBehaviour
     {
         isDead = true;
         currentHealth = 0f;
+
+        if (deathEffectPrefab != null)
+        {
+            GameObject fx = Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);
+            if (deathEffectLifetime > 0f) Destroy(fx, deathEffectLifetime);
+        }
 
         XPManager.Instance?.AddXP(EffectiveXpReward);
 

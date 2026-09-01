@@ -164,8 +164,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FragmentInheritanceManager
   dataFragmentPrefab: {fileID: 6752170078945371596, guid: 114fa698461b968479c72c3a76f83c5b, type: 3}
-  fragmentLifetime: 30
-  extendedLifetimeBonus: 15
+  fragmentLifetime: 5
+  extendedLifetimeBonus: 2
   dropEmptyFragments: 0
 --- !u!1 &134425176
 GameObject:
