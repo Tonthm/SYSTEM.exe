@@ -36,6 +36,11 @@ public class TutorialSectorController : MonoBehaviour
         [Tooltip("Move = วินาที, Shoot/Dash = จำนวนครั้ง, KillEnemies = จำนวนตัว")]
         public float requiredAmount = 1f;
 
+        [Tooltip("GameObject ที่จะเปิดใช้งานตอนเริ่มขั้นตอนนี้ (เช่น ศัตรูที่ซ่อนไว้)")]
+        public GameObject[] activateOnStepStart;
+        [Tooltip("เอฟเฟกต์ตอนของพวกนั้นโผล่ (เช่น particle พอร์ทัล)")]
+        public GameObject spawnEffectPrefab;
+
         [HideInInspector] public float progress;
         [HideInInspector] public bool done;
     }
@@ -44,15 +49,15 @@ public class TutorialSectorController : MonoBehaviour
     [SerializeField]
     private List<TutorialStep> steps = new List<TutorialStep>
     {
-        new TutorialStep { id = "move",  prompt = "WASD / ปุ่มลูกศร — เคลื่อนที่ Ghost Process",       type = StepType.Move,        requiredAmount = 2f },
-        new TutorialStep { id = "aim",   prompt = "คลิกซ้ายค้าง — ยิงไปทางเคอร์เซอร์",                 type = StepType.Shoot,       requiredAmount = 5f },
-        new TutorialStep { id = "dash",  prompt = "Shift / Space — Dash หลบกระสุน (ช่วง Dash อมตะ)",  type = StepType.Dash,        requiredAmount = 2f },
-        new TutorialStep { id = "kill",  prompt = "กำจัด Background Process ที่ขวางอยู่",              type = StepType.KillEnemies, requiredAmount = 1f },
+        new TutorialStep { id = "move",  prompt = "WASD / ARROW KEYS - move the Ghost Process",        type = StepType.Move,        requiredAmount = 2f },
+        new TutorialStep { id = "aim",   prompt = "HOLD LEFT CLICK - fire toward the cursor",          type = StepType.Shoot,       requiredAmount = 5f },
+        new TutorialStep { id = "dash",  prompt = "SHIFT / SPACE - dash (you are invulnerable mid-dash)", type = StepType.Dash,      requiredAmount = 2f },
+        new TutorialStep { id = "kill",  prompt = "Terminate the background process",                  type = StepType.KillEnemies, requiredAmount = 1f },
     };
 
     [Header("UI")]
     [SerializeField] private TMP_Text promptText;
-    [SerializeField] private string completeMessage = "TUTORIAL COMPLETE — เข้าสู่ Kernel Core";
+    [SerializeField] private string completeMessage = "TUTORIAL COMPLETE - ENTERING KERNEL CORE";
 
     [Header("Flow")]
     [SerializeField] private SectorExitTrigger exitTrigger;
@@ -76,7 +81,36 @@ public class TutorialSectorController : MonoBehaviour
     private void Start()
     {
         exitTrigger?.Lock();
+
+        // ซ่อนของทุกขั้นตอนไว้ก่อน แล้วค่อยเปิดทีละขั้น
+        foreach (var step in steps)
+        {
+            if (step.activateOnStepStart == null) continue;
+            foreach (var obj in step.activateOnStepStart)
+            {
+                if (obj != null) obj.SetActive(false);
+            }
+        }
+
         ShowCurrentPrompt();
+        ActivateStepObjects(GetCurrentStep());
+    }
+
+    /// <summary>เปิดของที่ผูกไว้กับขั้นตอนนี้ (เช่น ศัตรูที่ซ่อนไว้จนถึงขั้นให้ยิง)</summary>
+    private void ActivateStepObjects(TutorialStep step)
+    {
+        if (step == null || step.activateOnStepStart == null) return;
+
+        foreach (var obj in step.activateOnStepStart)
+        {
+            if (obj == null) continue;
+
+            obj.SetActive(true);
+            if (step.spawnEffectPrefab != null)
+            {
+                Instantiate(step.spawnEffectPrefab, obj.transform.position, Quaternion.identity);
+            }
+        }
     }
 
     private void Update()
@@ -140,8 +174,15 @@ public class TutorialSectorController : MonoBehaviour
 
         currentIndex++;
 
-        if (currentIndex >= steps.Count) Finish();
-        else ShowCurrentPrompt();
+        if (currentIndex >= steps.Count)
+        {
+            Finish();
+        }
+        else
+        {
+            ShowCurrentPrompt();
+            ActivateStepObjects(GetCurrentStep());
+        }
     }
 
     private void ShowCurrentPrompt()

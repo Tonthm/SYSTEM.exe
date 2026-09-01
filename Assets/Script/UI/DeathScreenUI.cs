@@ -21,16 +21,25 @@ public class DeathScreenUI : MonoBehaviour
     [SerializeField] private string titleFormat = "Process GP-{0:000} has been terminated";
     [SerializeField] private string causeFormat = "Cause of death: {0}";
 
-    private void OnEnable()
+    // subscribe ใน Start เพราะ GameManager ตั้ง Instance ใน Awake
+    // ถ้า subscribe ใน OnEnable แล้ว UI ตื่นก่อน GameManager จะไม่ได้ subscribe เลย
+    // (อาการ: ตายแล้วหน้าจอ Task Manager ไม่ขึ้น)
+    private void Start()
     {
+        if (panelRoot != null) panelRoot.SetActive(false);
+
         if (GameManager.Instance != null)
         {
             GameManager.Instance.OnPlayerDeathSequenceStarted += ShowDeathScreen;
             GameManager.Instance.OnPlayerRespawned += HideDeathScreen;
         }
+        else
+        {
+            Debug.LogWarning("[Death Screen] ไม่พบ GameManager ในฉาก — หน้าจอตายจะไม่ทำงาน");
+        }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         if (GameManager.Instance != null)
         {

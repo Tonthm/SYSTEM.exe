@@ -21,9 +21,17 @@ public class SectorExitTrigger : MonoBehaviour
     [Tooltip("ต้องไม่เหลือ GameObject ที่ Tag = Enemy ในฉากถึงจะผ่านได้")]
     [SerializeField] private bool requireAllEnemiesDead = false;
 
-    [Header("Visual (ไม่บังคับ)")]
+    [Header("Visual")]
+    [Tooltip("ซ่อนประตูสนิทระหว่างเล่น แล้วค่อยโผล่ตอนเคลียร์ด่าน")]
+    [SerializeField] private bool hideWhileLocked = true;
+    [Tooltip("ทุกอย่างที่ต้องซ่อน — sprite, particle, แสง ฯลฯ (เว้นว่าง = ซ่อน child ทั้งหมด)")]
+    [SerializeField] private GameObject[] visualsToHide;
     [SerializeField] private GameObject lockedVisual;
     [SerializeField] private GameObject unlockedVisual;
+
+    [Header("Reveal")]
+    [Tooltip("เอฟเฟกต์ตอนประตูโผล่")]
+    [SerializeField] private GameObject revealEffectPrefab;
 
     private bool isLocked;
     private bool used;
@@ -45,8 +53,15 @@ public class SectorExitTrigger : MonoBehaviour
 
     public void Unlock()
     {
+        bool wasLocked = isLocked;
         isLocked = false;
         RefreshVisual();
+
+        if (wasLocked && revealEffectPrefab != null)
+        {
+            Instantiate(revealEffectPrefab, transform.position, Quaternion.identity);
+        }
+
         Debug.Log("[Sector Exit] Exit unlocked");
     }
 
@@ -60,6 +75,25 @@ public class SectorExitTrigger : MonoBehaviour
     {
         if (lockedVisual != null) lockedVisual.SetActive(isLocked);
         if (unlockedVisual != null) unlockedVisual.SetActive(!isLocked);
+
+        if (!hideWhileLocked) return;
+
+        // ซ่อนสนิทระหว่างเล่น — ผู้เล่นจะไม่เห็นประตูจนกว่าจะเคลียร์ครบทุก wave
+        if (visualsToHide != null && visualsToHide.Length > 0)
+        {
+            foreach (var obj in visualsToHide)
+            {
+                if (obj != null) obj.SetActive(!isLocked);
+            }
+        }
+        else
+        {
+            foreach (Transform child in transform)
+            {
+                if (lockedVisual != null && child.gameObject == lockedVisual) continue;
+                child.gameObject.SetActive(!isLocked);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)

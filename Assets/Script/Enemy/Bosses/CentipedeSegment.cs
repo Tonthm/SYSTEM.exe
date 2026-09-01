@@ -30,6 +30,18 @@ public class CentipedeSegment : MonoBehaviour
     [SerializeField] private float wobbleAmplitude = 25f;
     [SerializeField] private float wobbleSpeed = 2.5f;
 
+    [Header("Arena Bounds (กันหัวออกนอกแมพ)")]
+    [Tooltip("จำกัดพื้นที่เลื้อยของหัว — ปิดแล้วตะขาบจะเลื้อยหลุดจอ")]
+    [SerializeField] private bool keepInsideArena = true;
+    [Tooltip("จุดกึ่งกลางสนาม เว้นว่าง = ใช้ (0,0)")]
+    [SerializeField] private Vector2 arenaCenter = Vector2.zero;
+    [Tooltip("ครึ่งความกว้าง/ความสูงของสนาม")]
+    [SerializeField] private Vector2 arenaHalfSize = new Vector2(9f, 5f);
+    [Tooltip("ออกนอกขอบได้ลึกสุดเท่าไหร่ก่อนถูกบังคับให้หันกลับ")]
+    [SerializeField] private float outsideTolerance = 1.5f;
+    [Tooltip("ความเร็วหมุนกลับตอนอยู่นอกขอบ (สูงกว่าปกติ = กลับเข้าไว)")]
+    [SerializeField] private float returnTurnSpeed = 220f;
+
     [Header("Guns (ฝั่งละ 2 กระบอก)")]
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private float fireCooldown = 2f;
@@ -106,6 +118,22 @@ public class CentipedeSegment : MonoBehaviour
 
     private void MoveAsHead()
     {
+        // ออกนอกสนามแล้ว → หันกลับเข้ากลางทันที สำคัญกว่าไล่ผู้เล่น
+        if (keepInsideArena && IsOutsideArena())
+        {
+            Vector2 toCenter = (arenaCenter - (Vector2)transform.position).normalized;
+
+            float current = Mathf.Atan2(heading.y, heading.x) * Mathf.Rad2Deg;
+            float target = Mathf.Atan2(toCenter.y, toCenter.x) * Mathf.Rad2Deg;
+            float next = Mathf.MoveTowardsAngle(current, target, returnTurnSpeed * Time.fixedDeltaTime);
+
+            heading = new Vector2(Mathf.Cos(next * Mathf.Deg2Rad), Mathf.Sin(next * Mathf.Deg2Rad));
+
+            rb.linearVelocity = heading * moveSpeed;
+            FaceDirection(heading);
+            return;
+        }
+
         if (player != null)
         {
             Vector2 toPlayer = ((Vector2)player.position - (Vector2)transform.position).normalized;
@@ -124,6 +152,23 @@ public class CentipedeSegment : MonoBehaviour
 
         rb.linearVelocity = heading * moveSpeed;
         FaceDirection(heading);
+    }
+
+    /// <summary>ออกนอกขอบสนามเกิน tolerance แล้วหรือยัง</summary>
+    private bool IsOutsideArena()
+    {
+        Vector2 offset = (Vector2)transform.position - arenaCenter;
+        return Mathf.Abs(offset.x) > arenaHalfSize.x + outsideTolerance
+            || Mathf.Abs(offset.y) > arenaHalfSize.y + outsideTolerance;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        if (!keepInsideArena) return;
+        Gizmos.color = new Color(0.3f, 0.9f, 1f, 0.6f);
+        Gizmos.DrawWireCube(arenaCenter, arenaHalfSize * 2f);
+        Gizmos.color = new Color(1f, 0.4f, 0.2f, 0.5f);
+        Gizmos.DrawWireCube(arenaCenter, (arenaHalfSize + Vector2.one * outsideTolerance) * 2f);
     }
 
     private void MoveAsFollower()

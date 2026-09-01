@@ -24,26 +24,49 @@ public class HUDManager : MonoBehaviour
     [Header("Refs")]
     [SerializeField] private PlayerHealth playerHealth;
 
-    private void OnEnable()
+    // สำคัญ: ต้อง subscribe ใน Start ไม่ใช่ OnEnable
+    // manager ตั้ง Instance ใน Awake — ถ้า UI ตื่นก่อน manager จะได้ Instance = null
+    // แล้วไม่ได้ subscribe เลยตลอดเกม (HUD จะค้างที่ค่าเริ่มต้น)
+    private void Start()
     {
-        if (playerHealth != null) playerHealth.OnHealthChanged += UpdateHP;
-        if (CorruptionMeter.Instance != null) CorruptionMeter.Instance.OnCorruptionChanged += UpdateCorruption;
-        if (XPManager.Instance != null) XPManager.Instance.OnRunTempXPChanged += UpdateTempXP;
+        if (playerHealth == null)
+        {
+            var playerObj = GameObject.FindGameObjectWithTag("Player");
+            if (playerObj != null) playerHealth = playerObj.GetComponent<PlayerHealth>();
+        }
+
+        if (playerHealth != null)
+        {
+            playerHealth.OnHealthChanged += UpdateHP;
+            UpdateHP(playerHealth.CurrentHealth, playerHealth.MaxHealth);
+        }
+        else
+        {
+            Debug.LogWarning("[HUD] ไม่พบ PlayerHealth — หลอด HP จะไม่อัปเดต");
+        }
+
+        if (CorruptionMeter.Instance != null)
+        {
+            CorruptionMeter.Instance.OnCorruptionChanged += UpdateCorruption;
+            UpdateCorruption(CorruptionMeter.Instance.CurrentCorruption, CorruptionMeter.Instance.MaxCorruption);
+        }
+
+        if (XPManager.Instance != null)
+        {
+            XPManager.Instance.OnRunTempXPChanged += UpdateTempXP;
+            UpdateTempXP(XPManager.Instance.RunTempXP);
+        }
+        else
+        {
+            Debug.LogWarning("[HUD] ไม่พบ XPManager — Temp XP จะไม่อัปเดต");
+        }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         if (playerHealth != null) playerHealth.OnHealthChanged -= UpdateHP;
         if (CorruptionMeter.Instance != null) CorruptionMeter.Instance.OnCorruptionChanged -= UpdateCorruption;
         if (XPManager.Instance != null) XPManager.Instance.OnRunTempXPChanged -= UpdateTempXP;
-    }
-
-    private void Start()
-    {
-        // ตั้งค่าเริ่มต้นตอนเปิดฉาก เผื่อ event ยังไม่เคยยิงมาก่อน
-        if (playerHealth != null) UpdateHP(playerHealth.CurrentHealth, playerHealth.MaxHealth);
-        if (CorruptionMeter.Instance != null) UpdateCorruption(CorruptionMeter.Instance.CurrentCorruption, CorruptionMeter.Instance.MaxCorruption);
-        if (XPManager.Instance != null) UpdateTempXP(XPManager.Instance.RunTempXP);
     }
 
     private void UpdateHP(float current, float max)

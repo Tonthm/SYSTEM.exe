@@ -37,6 +37,21 @@ public class XPManager : MonoBehaviour
         AddRunTempXP(amount);
     }
 
+    /// <summary>
+    /// หัก Permanent XP ตอนปลดล็อกสกิล
+    /// (เดิม SkillTreeManager.TryUnlock ไม่เคยหัก XP เลย — ปลดล็อกได้ฟรีทุกตัว)
+    /// </summary>
+    public bool SpendPermanentXP(int amount)
+    {
+        if (amount <= 0 || PermanentXP < amount) return false;
+
+        PermanentXP -= amount;
+        PlayerPrefs.SetInt(SaveKey_PermanentXP, PermanentXP);
+        PlayerPrefs.Save();
+        OnPermanentXPChanged?.Invoke(PermanentXP);
+        return true;
+    }
+
     public void AddRunTempXP(int amount)
     {
         RunTempXP += amount;
@@ -50,6 +65,28 @@ public class XPManager : MonoBehaviour
         RunTempXP = 0;
         OnRunTempXPChanged?.Invoke(RunTempXP);
         return value;
+    }
+
+    /// <summary>บันทึกค่า XP ปัจจุบัน (WaveManager เรียกตอนเริ่ม wave)</summary>
+    public XPSnapshot TakeSnapshot() => new XPSnapshot { permanent = PermanentXP, runTemp = RunTempXP };
+
+    /// <summary>ย้อน XP กลับไปยังค่าที่บันทึกไว้ (ตายแล้วเริ่ม wave ใหม่)</summary>
+    public void RestoreSnapshot(XPSnapshot snapshot)
+    {
+        PermanentXP = Mathf.Max(0, snapshot.permanent);
+        RunTempXP = Mathf.Max(0, snapshot.runTemp);
+
+        PlayerPrefs.SetInt(SaveKey_PermanentXP, PermanentXP);
+        PlayerPrefs.Save();
+
+        OnPermanentXPChanged?.Invoke(PermanentXP);
+        OnRunTempXPChanged?.Invoke(RunTempXP);
+    }
+
+    public struct XPSnapshot
+    {
+        public int permanent;
+        public int runTemp;
     }
 
     /// <summary>เรียกตอนเริ่มรันใหม่ทั้งหมด (ไม่ใช่แค่ตาย) เพื่อล้าง temp XP ที่เหลือค้าง</summary>

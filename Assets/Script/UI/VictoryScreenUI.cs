@@ -16,17 +16,21 @@ public class VictoryScreenUI : MonoBehaviour
     [SerializeField] private TMP_Text titleText;
     [SerializeField] private TMP_Text statsText;
 
-    [SerializeField] private string titleMessage = "NULL.exe terminated — SYSTEM RESTORED";
+    [SerializeField] private string titleMessage = "NULL.exe TERMINATED - SYSTEM RESTORED";
 
-    private void OnEnable()
+    private void Start()
     {
         if (GameManager.Instance != null)
         {
             GameManager.Instance.OnGameWon += ShowVictoryScreen;
         }
+        else
+        {
+            Debug.LogWarning("[Victory Screen] ไม่พบ GameManager ในฉาก");
+        }
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         if (GameManager.Instance != null)
         {

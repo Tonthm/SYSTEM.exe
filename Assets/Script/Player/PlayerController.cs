@@ -31,6 +31,20 @@ public class PlayerController : MonoBehaviour
     [Tooltip("ระหว่าง Dash ผู้เล่นอมตะหรือไม่ (i-frame)")]
     [SerializeField] private bool invincibleDuringDash = true;
 
+    [Header("Dash Effect")]
+    [Tooltip("Particle ที่เกิดตอนเริ่ม dash")]
+    [SerializeField] private GameObject dashEffectPrefab;
+    [Tooltip("TrailRenderer บนตัวผู้เล่น — เปิดเฉพาะตอน dash")]
+    [SerializeField] private TrailRenderer dashTrail;
+    [Tooltip("SpriteRenderer ที่จะเปลี่ยนสีตอน dash (บอกว่าอมตะอยู่)")]
+    [SerializeField] private SpriteRenderer[] dashTintTargets;
+    [SerializeField] private Color dashTintColor = new Color(0.4f, 1f, 1f, 0.7f);
+    [SerializeField] private float dashEffectLifetime = 1f;
+
+    [Header("Skill: Dodge Boost")]
+    [Tooltip("ปลดล็อกสกิลแล้ว dash cooldown คูณด้วยเท่านี้ (0.7 = เร็วขึ้น 30%)")]
+    [SerializeField] private float dodgeBoostCooldownMultiplier = 0.7f;
+
     [Header("Refs")]
     [SerializeField] private Rigidbody2D rb;
 
@@ -49,17 +63,38 @@ public class PlayerController : MonoBehaviour
     public bool IsInvincible { get; private set; } = false;
     public bool IsDashing => isDashing;
 
+    /// <summary>dash cooldown จริงหลังคิดสกิล Dodge Boost แล้ว</summary>
+    public float EffectiveDashCooldown =>
+        dashCooldown * SkillEffects.Multiplier(SkillEffects.DodgeBoost, dodgeBoostCooldownMultiplier);
+
+    /// <summary>สัดส่วน cooldown ที่เหลือ 0-1 (ให้ HUD ทำวงแหวน dash ได้)</summary>
+    public float DashCooldownPercent =>
+        EffectiveDashCooldown <= 0f ? 0f : Mathf.Clamp01(dashCooldownTimer / EffectiveDashCooldown);
+
     /// <summary>ความเร็วจริงที่ใช้อยู่ตอนนี้ (ให้ HUD/ดีบักอ่านได้)</summary>
     public float CurrentMoveSpeed => moveSpeed * tempSpeedMultiplier * RunItemSpeedMultiplier;
 
     private float RunItemSpeedMultiplier =>
         RunInventory.Instance != null ? RunInventory.Instance.GetMoveSpeedMultiplier() : 1f;
 
+    private Color[] baseTints;
+
     private void Awake()
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
         rb.gravityScale = 0f;
         rb.freezeRotation = true;
+
+        if (dashTrail != null) dashTrail.emitting = false;
+
+        if (dashTintTargets != null)
+        {
+            baseTints = new Color[dashTintTargets.Length];
+            for (int i = 0; i < dashTintTargets.Length; i++)
+            {
+                if (dashTintTargets[i] != null) baseTints[i] = dashTintTargets[i].color;
+            }
+        }
     }
 
     private void Update()
@@ -112,6 +147,7 @@ public class PlayerController : MonoBehaviour
             {
                 isDashing = false;
                 IsInvincible = false;
+                SetDashVisual(false);
             }
         }
     }
@@ -124,8 +160,42 @@ public class PlayerController : MonoBehaviour
 
         isDashing = true;
         dashTimer = dashDuration;
-        dashCooldownTimer = dashCooldown;
+        dashCooldownTimer = EffectiveDashCooldown;
         IsInvincible = invincibleDuringDash;
+
+        SetDashVisual(true);
+
+        if (dashEffectPrefab != null)
+        {
+            float angle = Mathf.Atan2(dashDirection.y, dashDirection.x) * Mathf.Rad2Deg;
+            GameObject fx = Instantiate(dashEffectPrefab, transform.position, Quaternion.Euler(0f, 0f, angle));
+            if (dashEffectLifetime > 0f) Destroy(fx, dashEffectLifetime);
+        }
+    }
+
+    private void SetDashVisual(bool on)
+    {
+        if (dashTrail != null) dashTrail.emitting = on;
+
+        if (dashTintTargets == null || baseTints == null) return;
+        for (int i = 0; i < dashTintTargets.Length; i++)
+        {
+            if (dashTintTargets[i] == null) continue;
+            dashTintTargets[i].color = on ? dashTintColor : baseTints[i];
+        }
+    }
+
+    /// <summary>GameManager เรียกตอนตาย — หยุดนิ่งและล้างสถานะ dash ค้าง</summary>
+    public void ResetState()
+    {
+        isDashing = false;
+        IsInvincible = false;
+        dashTimer = 0f;
+        dashCooldownTimer = 0f;
+        tempSpeedMultiplier = 1f;
+        if (speedRoutine != null) { StopCoroutine(speedRoutine); speedRoutine = null; }
+        rb.linearVelocity = Vector2.zero;
+        SetDashVisual(false);
     }
 
     /// <summary>ให้ระบบอื่น (เช่น Latency Spike) หน่วงความเร็วผู้เล่นชั่วคราว</summary>

@@ -34,17 +34,24 @@ public class SkillSelectUI : MonoBehaviour
         {
             GameObject buttonObj = Instantiate(skillButtonPrefab, contentParent);
 
+            bool canUnlock = SkillTreeManager.Instance.CanUnlock(skill.id);
+
             TMP_Text label = buttonObj.GetComponentInChildren<TMP_Text>();
             if (label != null)
             {
                 string status = skill.unlocked ? "[UNLOCKED]" : $"[{skill.cost} XP]";
-                label.text = $"{skill.displayName} {status}";
+                string line2 = skill.unlocked
+                    ? skill.description
+                    : (canUnlock ? skill.description : SkillTreeManager.Instance.GetLockReason(skill.id));
+
+                // ใช้ rich text ของ TMP ทำบรรทัดคำอธิบายให้เล็กลง
+                label.text = $"{skill.displayName} {status}\n<size=70%>{line2}</size>";
             }
 
             Button btn = buttonObj.GetComponent<Button>();
             if (btn != null)
             {
-                btn.interactable = !skill.unlocked;
+                btn.interactable = !skill.unlocked && canUnlock;
                 string skillId = skill.id; // local copy สำหรับ closure
                 btn.onClick.AddListener(() =>
                 {

@@ -28,6 +28,8 @@ public class WaveManager : MonoBehaviour
     [Header("Timing")]
     [Tooltip("หน่วงก่อนเริ่ม wave แรก (ให้ผู้เล่นตั้งตัว)")]
     [SerializeField] private float startDelay = 2f;
+    [Tooltip("พอร์ทัลขยายตัวเตือนกี่วินาทีก่อนศัตรูโผล่ — 0 = โผล่ทันที (ไม่แนะนำ ผู้เล่นจะโดนทับ)")]
+    [SerializeField] private float spawnTelegraphDuration = 0.6f;
     [Tooltip("เคลียร์ศัตรูหมดก่อนหมดเวลา = ขึ้น wave ถัดไปเลย ไม่ต้องรอครบนาที")]
     [SerializeField] private bool advanceEarlyWhenCleared = true;
     [Tooltip("หน่วงหลังเคลียร์ไว (สั้น ๆ พอให้เห็นป้าย WAVE CLEARED)")]
@@ -42,6 +44,8 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private float bonusXpPerSecond = 1f;
     [Tooltip("เพดานโบนัสต่อ wave (0 = ไม่จำกัด)")]
     [SerializeField] private int maxBonusXpPerWave = 60;
+    [Tooltip("ปลดล็อกสกิล Overclock แล้ว โบนัส (และเพดาน) คูณด้วยเท่านี้")]
+    [SerializeField] private float overclockSkillMultiplier = 2f;
 
     [Header("Stale Penalty (ศัตรูค้างจาก wave ก่อน)")]
     [Tooltip("ตัวคูณ XP ของศัตรูที่ค้างข้าม wave (0.5 = ได้ XP ครึ่งเดียว)")]
@@ -64,6 +68,7 @@ public class WaveManager : MonoBehaviour
 
     // ---------- Runtime ----------
     private readonly List<EnemyHealth> aliveEnemies = new List<EnemyHealth>();
+    private int pendingSpawns;   // ศัตรูที่พอร์ทัลกำลังเตือนอยู่ ยังไม่โผล่
     private int currentWaveIndex = -1;
     private float waveTimeRemaining;
     private bool waveTimerRunning;
@@ -71,6 +76,12 @@ public class WaveManager : MonoBehaviour
 
     // ผลลัพธ์ของ wave ที่เพิ่งจบ (ใช้ตัดสินว่าจะหน่วงนานแค่ไหน)
     private bool lastWaveClearedEarly;
+
+    private Coroutine waveLoop;
+    private XPManager.XPSnapshot waveStartXP;   // XP ตอนเริ่ม wave — ใช้ย้อนกลับตอนตาย
+    private bool restarting;
+    private bool diedThisWave;             // ตายใน wave นี้หรือยัง (ใช้กับ Corruption Meter)
+    private bool restartedIntoThisWave;    // wave ที่กำลังจะเริ่มมาจากการตายหรือไม่
 
     public int CurrentWaveNumber => currentWaveIndex + 1;   // นับ 1-10 สำหรับ UI
     public int TotalWaves => waves.Count;
@@ -104,7 +115,53 @@ public class WaveManager : MonoBehaviour
             return;
         }
 
-        StartCoroutine(RunAllWaves());
+        waveLoop = StartCoroutine(RunAllWaves(0));
+    }
+
+    /// <summary>
+    /// เรียกจาก GameManager ตอนผู้เล่นเกิดใหม่ — เริ่ม wave ปัจจุบันใหม่ทั้งหมด
+    /// ล้างศัตรูที่ค้างอยู่ + ย้อน XP กลับไปเท่ากับตอนก่อนเข้า wave นั้น
+    /// </summary>
+    public void RestartCurrentWave()
+    {
+        if (allWavesDone || restarting) return;
+
+        restarting = true;
+
+        int restartIndex = Mathf.Max(0, currentWaveIndex);
+        diedThisWave = true;            // wave นี้ตายไปแล้ว เคลียร์ได้ก็ไม่ได้ลด Corruption
+        restartedIntoThisWave = true;   // กัน RunWave รีเซ็ตค่าข้างบนทิ้ง
+
+        if (waveLoop != null) StopCoroutine(waveLoop);
+        StopAllCoroutines();   // หยุด spawn routine ที่ค้างอยู่ด้วย
+
+        ClearAllEnemies();
+
+        // ย้อน XP กลับไปก่อนเข้า wave นี้ — ฆ่าศัตรูไปแล้วเท่าไหร่ก็ไม่นับ
+        XPManager.Instance?.RestoreSnapshot(waveStartXP);
+
+        waveTimerRunning = false;
+        pendingSpawns = 0;
+        restarting = false;
+
+        Debug.Log($"[Wave] ผู้เล่นตาย — เริ่ม Wave {restartIndex + 1} ใหม่ และย้อน XP กลับ");
+        waveLoop = StartCoroutine(RunAllWaves(restartIndex));
+    }
+
+    /// <summary>ลบศัตรูที่ยังอยู่ในฉากทั้งหมด (ไม่ให้ XP ไม่ดรอปอะไร)</summary>
+    private void ClearAllEnemies()
+    {
+        for (int i = aliveEnemies.Count - 1; i >= 0; i--)
+        {
+            if (aliveEnemies[i] != null) Destroy(aliveEnemies[i].gameObject);
+        }
+        aliveEnemies.Clear();
+
+        // เก็บกวาดกระสุนศัตรูที่ค้างอยู่ด้วย ไม่งั้นเกิดใหม่มาโดนกระสุนเก่าทันที
+        foreach (var bullet in FindObjectsByType<Bullet>(FindObjectsSortMode.None))
+        {
+            if (bullet != null && !bullet.IsPlayerBullet) Destroy(bullet.gameObject);
+        }
     }
 
     private void Update()
@@ -116,11 +173,11 @@ public class WaveManager : MonoBehaviour
 
     // ================= Wave loop =================
 
-    private IEnumerator RunAllWaves()
+    private IEnumerator RunAllWaves(int fromIndex)
     {
         yield return new WaitForSeconds(startDelay);
 
-        for (int i = 0; i < waves.Count; i++)
+        for (int i = fromIndex; i < waves.Count; i++)
         {
             yield return StartCoroutine(RunWave(i));
 
@@ -140,6 +197,13 @@ public class WaveManager : MonoBehaviour
         currentWaveIndex = index;
         WaveDefinition wave = waves[index];
         lastWaveClearedEarly = false;
+
+        // รีเซ็ตเฉพาะตอนเริ่ม wave ใหม่จริง ๆ — ถ้ามาจาก RestartCurrentWave ค่าจะถูกตั้งเป็น true ไว้แล้ว
+        if (!restartedIntoThisWave) diedThisWave = false;
+        restartedIntoThisWave = false;
+
+        // บันทึก XP ไว้ก่อน ถ้าตายใน wave นี้จะย้อนกลับมาที่ค่านี้
+        if (XPManager.Instance != null) waveStartXP = XPManager.Instance.TakeSnapshot();
 
         Debug.Log($"[Wave] เริ่ม Wave {index + 1}/{waves.Count}: {wave.waveName}" + (wave.isBossWave ? " (BOSS)" : ""));
         OnWaveStarted?.Invoke(index + 1, wave);
@@ -163,7 +227,7 @@ public class WaveManager : MonoBehaviour
             waveTimerRunning = false;
             waveTimeRemaining = 0f;
 
-            while (spawningGroups > 0) yield return null;
+            while (spawningGroups > 0 || pendingSpawns > 0) yield return null;
             while (aliveEnemies.Count > 0) yield return null;
 
             lastWaveClearedEarly = true;
@@ -177,7 +241,8 @@ public class WaveManager : MonoBehaviour
             {
                 // ต้อง spawn ครบก่อนถึงจะนับว่าเคลียร์ได้
                 // (กันกรณีกลุ่มที่ตั้ง Start Delay ไว้ยังไม่ทันออกมา)
-                bool cleared = advanceEarlyWhenCleared && spawningGroups <= 0 && aliveEnemies.Count == 0;
+                bool cleared = advanceEarlyWhenCleared && spawningGroups <= 0
+                               && pendingSpawns <= 0 && aliveEnemies.Count == 0;
                 if (cleared)
                 {
                     lastWaveClearedEarly = true;
@@ -192,6 +257,10 @@ public class WaveManager : MonoBehaviour
         }
 
         int carriedOver = MarkRemainingAsStale();
+
+        // เคลียร์ wave โดยไม่ตายเลย = ลด Corruption (ทางแก้ตัวหลักของผู้เล่น)
+        CorruptionMeter.Instance?.OnWaveCleared(diedThisWave);
+
         OnWaveEnded?.Invoke(index + 1, carriedOver, lastWaveClearedEarly);
     }
 
@@ -200,8 +269,12 @@ public class WaveManager : MonoBehaviour
     {
         if (!speedClearBonus || timeLeft <= 0f) return;
 
-        int bonus = Mathf.RoundToInt(timeLeft * bonusXpPerSecond);
-        if (maxBonusXpPerWave > 0) bonus = Mathf.Min(bonus, maxBonusXpPerWave);
+        // สกิล Overclock คูณทั้งโบนัสและเพดาน จะได้ไม่ชนเพดานเดิมจนไร้ผล
+        float skillMultiplier = SkillEffects.Multiplier(SkillEffects.OverclockStreak, overclockSkillMultiplier);
+
+        int bonus = Mathf.RoundToInt(timeLeft * bonusXpPerSecond * skillMultiplier);
+        int cap = Mathf.RoundToInt(maxBonusXpPerWave * skillMultiplier);
+        if (maxBonusXpPerWave > 0) bonus = Mathf.Min(bonus, cap);
         if (bonus <= 0) return;
 
         XPManager.Instance?.AddXP(bonus);
@@ -237,17 +310,27 @@ public class WaveManager : MonoBehaviour
 
         for (int i = 0; i < group.count; i++)
         {
-            SpawnOne(group);
+            // ไม่ block ลูป — พอร์ทัลเตือนพร้อมกันได้หลายจุด จังหวะ interval จึงไม่เพี้ยน
+            StartCoroutine(SpawnOneRoutine(group));
             if (group.spawnInterval > 0f) yield return new WaitForSeconds(group.spawnInterval);
         }
 
         onFinished?.Invoke();
     }
 
-    private void SpawnOne(SpawnGroup group)
+    private IEnumerator SpawnOneRoutine(SpawnGroup group)
     {
+        pendingSpawns++;
+
         WaveSpawnPoint point = WaveSpawnPoint.GetRandom(group.spawnPointGroupId);
         Vector3 pos = point != null ? point.GetSpawnPosition() : transform.position;
+
+        // พอร์ทัลขยายตัวเตือนก่อน ผู้เล่นจะได้ถอยออกจากจุดนั้นทัน
+        if (spawnTelegraphDuration > 0f && point != null)
+        {
+            point.PlayTelegraph(spawnTelegraphDuration);
+            yield return new WaitForSeconds(spawnTelegraphDuration);
+        }
 
         GameObject obj = Instantiate(group.enemyPrefab, pos, Quaternion.identity);
 
@@ -257,6 +340,8 @@ public class WaveManager : MonoBehaviour
             health.ApplyScaling(enemyHealthMultiplier, enemyXpMultiplier);
             RegisterEnemy(health);
         }
+
+        pendingSpawns--;
     }
 
     // ================= Enemy tracking =================

@@ -23,6 +23,20 @@ public class WaveSpawnPoint : MonoBehaviour
 
     public string GroupId => groupId;
 
+    [Tooltip("พอร์ทัลที่จะขยายตัวเตือนก่อนศัตรูโผล่ — เว้นว่างจะหาบน GameObject นี้เอง")]
+    [SerializeField] private SpawnPortal portal;
+
+    private void Awake()
+    {
+        if (portal == null) portal = GetComponent<SpawnPortal>();
+    }
+
+    /// <summary>WaveManager เรียกก่อน spawn จริง</summary>
+    public void PlayTelegraph(float duration)
+    {
+        portal?.PlayTelegraph(duration);
+    }
+
     public Vector3 GetSpawnPosition()
     {
         if (scatterRadius <= 0f) return transform.position;
