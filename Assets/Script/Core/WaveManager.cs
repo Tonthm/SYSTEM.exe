@@ -26,8 +26,10 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private List<WaveDefinition> waves = new List<WaveDefinition>();
 
     [Header("Timing")]
-    [Tooltip("หน่วงก่อนเริ่ม wave แรก (ให้ผู้เล่นตั้งตัว)")]
-    [SerializeField] private float startDelay = 2f;
+    [Tooltip("หน่วงก่อนเริ่ม wave แรก (ให้ฉากโหลดเสร็จก่อน) — ตั้งสั้น ๆ พอ")]
+    [SerializeField] private float startDelay = 0.5f;
+    [Tooltip("เวลารอให้แผง Wave Intro เล่นจบก่อนศัตรูจะเริ่ม spawn — ตั้งให้เท่ากับความยาวแผง")]
+    [SerializeField] private float waveIntroPause = 1.8f;
     [Tooltip("พอร์ทัลขยายตัวเตือนกี่วินาทีก่อนศัตรูโผล่ — 0 = โผล่ทันที (ไม่แนะนำ ผู้เล่นจะโดนทับ)")]
     [SerializeField] private float spawnTelegraphDuration = 0.6f;
     [Tooltip("เคลียร์ศัตรูหมดก่อนหมดเวลา = ขึ้น wave ถัดไปเลย ไม่ต้องรอครบนาที")]
@@ -119,8 +121,18 @@ public class WaveManager : MonoBehaviour
     }
 
     /// <summary>
-    /// เรียกจาก GameManager ตอนผู้เล่นเกิดใหม่ — เริ่ม wave ปัจจุบันใหม่ทั้งหมด
-    /// ล้างศัตรูที่ค้างอยู่ + ย้อน XP กลับไปเท่ากับตอนก่อนเข้า wave นั้น
+    /// เรียกจาก GameManager ตอนผู้เล่นตาย — wave เดินต่อตามปกติ
+    /// แค่จำไว้ว่ารอบนี้ตายแล้ว จะได้ไม่ได้รางวัลลด Corruption ตอนเคลียร์ wave
+    /// </summary>
+    public void NotifyPlayerDied()
+    {
+        diedThisWave = true;
+    }
+
+    /// <summary>
+    /// เริ่ม wave ปัจจุบันใหม่ทั้งหมด — ล้างศัตรู + ย้อน XP
+    /// ตอนนี้ไม่ได้ถูกเรียกอัตโนมัติแล้ว (เปลี่ยนเป็นระบบ Spawn Protection แทน)
+    /// เก็บไว้ให้เรียกเองได้ถ้าอยากใช้กับบอสหรือด่านพิเศษ
     /// </summary>
     public void RestartCurrentWave()
     {
@@ -206,7 +218,11 @@ public class WaveManager : MonoBehaviour
         if (XPManager.Instance != null) waveStartXP = XPManager.Instance.TakeSnapshot();
 
         Debug.Log($"[Wave] เริ่ม Wave {index + 1}/{waves.Count}: {wave.waveName}" + (wave.isBossWave ? " (BOSS)" : ""));
+
+        // ยิง event ก่อน แล้วค่อยรอให้แผง Wave Intro เล่นจบ
+        // ศัตรูจะยังไม่ spawn ระหว่างนี้ ผู้เล่นจึงอ่านชื่อ wave ได้ทัน (รวมถึง wave 1)
         OnWaveStarted?.Invoke(index + 1, wave);
+        if (waveIntroPause > 0f) yield return new WaitForSeconds(waveIntroPause);
 
         if (wave.formatWarningOnStart)
         {

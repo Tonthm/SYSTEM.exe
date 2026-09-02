@@ -65,7 +65,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &2279397049526861879
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -119,9 +119,16 @@ MonoBehaviour:
   dashDuration: 0.15
   dashCooldown: 0.8
   invincibleDuringDash: 1
+  passThroughEnemies: 1
+  passThroughLayers:
+    serializedVersion: 2
+    m_Bits: 640
+  spawnProtectionDuration: 1.5
+  spawnProtectionBlinkSpeed: 12
   dashEffectPrefab: {fileID: 0}
   dashTrail: {fileID: 1864323495309503317}
-  dashTintTargets: []
+  tintTargets:
+  - {fileID: 7366162139490169681}
   dashTintColor: {r: 0.4, g: 1, b: 1, a: 0.7}
   dashEffectLifetime: 1
   dodgeBoostCooldownMultiplier: 0.7

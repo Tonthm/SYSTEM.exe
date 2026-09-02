@@ -387,8 +387,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FragmentInheritanceManager
   dataFragmentPrefab: {fileID: 6752170078945371596, guid: 114fa698461b968479c72c3a76f83c5b, type: 3}
-  fragmentLifetime: 5
-  extendedLifetimeBonus: 2
+  fragmentLifetime: 30
+  extendedLifetimeBonus: 15
   dropEmptyFragments: 0
 --- !u!1001 &223411742
 PrefabInstance:
@@ -935,9 +935,9 @@ MonoBehaviour:
   playerObject: {fileID: 1069109425}
   currentCheckpoint: {fileID: 1386717640}
   useManualReborn: 1
-  respawnDelay: 3
+  respawnDelay: 0
   rebornDelay: 0.3
-  restartWaveOnDeath: 1
+  spawnProtectionDuration: 1.5
   deathEffectPrefab: {fileID: 5670908484303250837, guid: 29e893bb7e4d6ea4aa876c003ab05599, type: 3}
   deathEffectLifetime: 2
   loadVictorySceneOnWin: 1
@@ -1218,7 +1218,6 @@ MonoBehaviour:
   - Sector_Firewall
   - Sector_RAM
   - Sector_Registry
-  - Sector_Core_NULL
   storyUnlockThreshold: 0
   victorySceneName: VictoryScene
 --- !u!1 &1069109425 stripped
@@ -1793,6 +1792,7 @@ MonoBehaviour:
     formatWarningOnStart: 1
     formatWarningDuration: 0
   startDelay: 2
+  waveIntroPause: 1.8
   spawnTelegraphDuration: 0.6
   advanceEarlyWhenCleared: 1
   clearedEarlyDelay: 1.2
@@ -1803,11 +1803,11 @@ MonoBehaviour:
   overclockSkillMultiplier: 2
   stalePenaltyMultiplier: 0.5
   stackStalePenalty: 0
-  enemyHealthMultiplier: 2
+  enemyHealthMultiplier: 2.4
   enemyXpMultiplier: 1
   exitTrigger: {fileID: 134790198}
   autoClearSectorOnFinish: 0
-  isFinalSector: 0
+  isFinalSector: 1
 --- !u!4 &1204017438
 Transform:
   m_ObjectHideFlags: 0

@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   maxHealth: 30
   xpReward: 0
-  destroyOnDeath: 0
+  destroyOnDeath: 1
   destroyDelay: 0
   shield: {fileID: 0}
   deathEffectPrefab: {fileID: 5670908484303250837, guid: 29e893bb7e4d6ea4aa876c003ab05599, type: 3}

@@ -571,9 +571,9 @@ MonoBehaviour:
   playerObject: {fileID: 313619032}
   currentCheckpoint: {fileID: 295435315}
   useManualReborn: 1
-  respawnDelay: 3
+  respawnDelay: 0
   rebornDelay: 0.3
-  restartWaveOnDeath: 1
+  spawnProtectionDuration: 1.5
   deathEffectPrefab: {fileID: 5670908484303250837, guid: 29e893bb7e4d6ea4aa876c003ab05599, type: 3}
   deathEffectLifetime: 2
   loadVictorySceneOnWin: 1
@@ -1488,7 +1488,6 @@ MonoBehaviour:
   - Sector_Firewall
   - Sector_RAM
   - Sector_Registry
-  - Sector_Core_NULL
   storyUnlockThreshold: 0
   victorySceneName: VictoryScene
 --- !u!1 &1597892897
@@ -1627,6 +1626,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0d25712f81445f4e8510d3e790a7ef9, type: 3}
+--- !u!1001 &1708042012
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 242600636246400827, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_Name
+      value: RegistryBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
 --- !u!1 &1757836972
 GameObject:
   m_ObjectHideFlags: 0
@@ -2131,7 +2187,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1527202135372202085, guid: b5c2d9d0aac1ad345aedc1df6bff64cf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -6.48
       objectReference: {fileID: 0}
     - target: {fileID: 1527202135372202085, guid: b5c2d9d0aac1ad345aedc1df6bff64cf, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2173,6 +2229,14 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300776115255673190, guid: b5c2d9d0aac1ad345aedc1df6bff64cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300776115255673190, guid: b5c2d9d0aac1ad345aedc1df6bff64cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8563483512795144242, guid: b5c2d9d0aac1ad345aedc1df6bff64cf, type: 3}
       propertyPath: m_Name
       value: GlitchZone
@@ -2205,3 +2269,4 @@ SceneRoots:
   - {fileID: 1674654292}
   - {fileID: 1057614633}
   - {fileID: 1262727517}
+  - {fileID: 1708042012}

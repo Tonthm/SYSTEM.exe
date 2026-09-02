@@ -1649,12 +1649,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SectorPoolManager
   tutorialSceneName: Sector_Tutorial
-  allSectorScenes: []
+  allSectorScenes:
+  - Sector_Firewall
+  - Sector_RAM
   storySectorScenes:
   - Sector_Firewall
   - Sector_RAM
   - Sector_Registry
-  - Sector_Core_NULL
   storyUnlockThreshold: 0
   victorySceneName: VictoryScene
 --- !u!1001 &1237168939
@@ -2146,7 +2147,7 @@ MonoBehaviour:
   useManualReborn: 1
   respawnDelay: 3
   rebornDelay: 0.3
-  restartWaveOnDeath: 1
+  spawnProtectionDuration: 1.5
   deathEffectPrefab: {fileID: 0}
   deathEffectLifetime: 2
   loadVictorySceneOnWin: 1

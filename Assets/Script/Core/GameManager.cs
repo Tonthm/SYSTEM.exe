@@ -28,9 +28,9 @@ public class GameManager : MonoBehaviour
     [Tooltip("หน่วงหลังกดปุ่ม ก่อนตัวละครโผล่จริง (ให้หน้าจอปิดทัน)")]
     [SerializeField] private float rebornDelay = 0.3f;
 
-    [Header("Wave")]
-    [Tooltip("ตายแล้วเริ่ม wave ปัจจุบันใหม่ และย้อน XP กลับไปก่อนเข้า wave นั้น")]
-    [SerializeField] private bool restartWaveOnDeath = true;
+    [Header("Spawn Protection")]
+    [Tooltip("เกิดใหม่แล้วอมตะและทะลุศัตรูได้กี่วินาที — ให้เดินออกจากฝูงศัตรูก่อน")]
+    [SerializeField] private float spawnProtectionDuration = 1.5f;
 
     [Header("Death Effect")]
     [SerializeField] private GameObject deathEffectPrefab;
@@ -43,6 +43,13 @@ public class GameManager : MonoBehaviour
     public System.Action OnPlayerRespawned;
     public System.Action OnPlayerDeathSequenceStarted;
     public System.Action OnGameWon;
+
+    /// <summary>เวลาที่ใช้ในรอบนี้ (วินาที) — ให้ UI หรือ leaderboard ใช้</summary>
+    public float RunTime => Time.time - runStartTime;
+    /// <summary>จำนวนครั้งที่ตายในรอบนี้</summary>
+    public int RunDeaths { get; private set; }
+
+    private float runStartTime;
 
     public bool IsGameWon { get; private set; }
     public bool IsRespawning { get; private set; }
@@ -57,6 +64,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        runStartTime = Time.time;
+
         if (playerObject == null)
         {
             var found = GameObject.FindGameObjectWithTag("Player");
@@ -87,6 +96,7 @@ public class GameManager : MonoBehaviour
         if (IsRespawning || IsWaitingForReborn) return;   // กันเรียกซ้อนจากกระสุนหลายนัดในเฟรมเดียว
 
         IsRespawning = true;
+        RunDeaths++;
 
         if (playerObject != null)
         {
@@ -100,6 +110,9 @@ public class GameManager : MonoBehaviour
             playerObject.GetComponent<PlayerController>()?.ResetState();
             playerObject.SetActive(false);
         }
+
+        // wave เดินต่อตามปกติ แค่บอกว่ารอบนี้ตายแล้ว (Corruption Meter ใช้ตัดสินว่าเคลียร์แบบไม่ตายไหม)
+        WaveManager.Instance?.NotifyPlayerDied();
 
         OnPlayerDeathSequenceStarted?.Invoke();   // UI แสดงหน้าจอ Task Manager ตรงนี้
 
@@ -136,11 +149,12 @@ public class GameManager : MonoBehaviour
         playerObject.transform.position = currentCheckpoint.position;
         playerObject.SetActive(true);
 
-        playerObject.GetComponent<PlayerController>()?.ResetState();
+        var controller = playerObject.GetComponent<PlayerController>();
+        controller?.ResetState();
         playerObject.GetComponent<PlayerHealth>()?.ResetHealth();
 
-        // เริ่ม wave ปัจจุบันใหม่ + ย้อน XP กลับไปก่อนเข้า wave นั้น
-        if (restartWaveOnDeath) WaveManager.Instance?.RestartCurrentWave();
+        // อมตะ + ทะลุศัตรูชั่วครู่ กันเกิดกลางฝูงแล้วตายซ้ำทันที
+        controller?.BeginSpawnProtection(spawnProtectionDuration);
 
         OnPlayerRespawned?.Invoke();
         Debug.Log("[GameManager] New Ghost Process spawned at checkpoint");
@@ -155,6 +169,14 @@ public class GameManager : MonoBehaviour
         CorruptionMeter.Instance?.OnSectorCleared();
 
         SectorPoolManager.Instance?.MarkSectorCleared(currentSceneName);
+
+        // ผ่านด่านสุดท้ายแล้ว = จบเกม (ไม่ต้องมีบอส NULL.exe แยกด่าน)
+        if (SectorPoolManager.Instance != null && SectorPoolManager.Instance.IsNextSectorVictory())
+        {
+            CompleteGame();
+            return;
+        }
+
         string next = SectorPoolManager.Instance?.GetNextSector();
         SectorPoolManager.Instance?.LoadSector(next);
     }
@@ -164,8 +186,20 @@ public class GameManager : MonoBehaviour
         OnSectorCleared(SceneManager.GetActiveScene().name);
     }
 
-    /// <summary>เงื่อนไขชนะเกม — เรียกจาก NullExeBoss</summary>
+    /// <summary>เงื่อนไขชนะเกมจากการฆ่าบอสสุดท้าย — เรียกจาก NullExeBoss (ถ้ามีด่านบอสแยก)</summary>
     public void OnFinalBossDefeated()
+    {
+        if (IsGameWon) return;
+
+        SectorPoolManager.Instance?.MarkSectorCleared(SceneManager.GetActiveScene().name);
+        CompleteGame();
+    }
+
+    /// <summary>
+    /// จบเกม — ใช้ได้ทั้งกรณีฆ่าบอสสุดท้าย และกรณีผ่านด่านสุดท้ายในคลังจนหมด
+    /// บันทึกความคืบหน้า + ส่งผลเข้าตารางสถิติ + แจ้ง UI
+    /// </summary>
+    public void CompleteGame()
     {
         if (IsGameWon) return;
         IsGameWon = true;
@@ -174,10 +208,12 @@ public class GameManager : MonoBehaviour
         IsRespawning = false;
         IsWaitingForReborn = false;
 
-        SectorPoolManager.Instance?.MarkSectorCleared(SceneManager.GetActiveScene().name);
         SectorPoolManager.Instance?.MarkGameCompleted();
 
-        Debug.Log("[GameManager] NULL.exe terminated — SYSTEM RESTORED");
+        // บันทึกลงตารางสถิติในเครื่อง (แสดงที่หน้า Main Menu)
+        int rank = LocalLeaderboard.Submit(RunTime, RunDeaths);
+        Debug.Log($"[GameManager] SYSTEM RESTORED (เวลา {RunTime:F1}s, ตาย {RunDeaths} ครั้ง, อันดับ {rank})");
+
         OnGameWon?.Invoke();
 
         if (loadVictorySceneOnWin) Invoke(nameof(LoadVictoryScene), victoryDelay);

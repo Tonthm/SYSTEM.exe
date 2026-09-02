@@ -43,6 +43,15 @@ public class SectorPoolManager : MonoBehaviour
     public bool HasCompletedTutorial { get; private set; }
     public bool HasCompletedGame { get; private set; }
 
+    public string VictorySceneName => victorySceneName;
+
+    /// <summary>ด่านถัดไปคือหน้าจบเกมแล้วหรือยัง (ผ่านครบทุกด่านในคลัง + เนื้อเรื่อง)</summary>
+    public bool IsNextSectorVictory()
+    {
+        string next = GetNextSector();
+        return !string.IsNullOrEmpty(victorySceneName) && next == victorySceneName;
+    }
+
     public int ClearedCount => clearedSectors.Count;
     public int PoolSize => allSectorScenes.Count;
     public int StoryIndex => storyIndex;
