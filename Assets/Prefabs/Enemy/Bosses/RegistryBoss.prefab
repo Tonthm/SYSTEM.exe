@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6588572201173340778}
   - component: {fileID: 5023682511154307589}
   - component: {fileID: 3784075294518986902}
+  - component: {fileID: 3316644999933702467}
   m_Layer: 0
   m_Name: RegistryBoss
   m_TagString: Enemy
@@ -162,6 +163,22 @@ MonoBehaviour:
   attackingColor: {r: 0.6, g: 0.6, b: 0.75, a: 1}
   shakeAmount: 0.1
   idleSpinSpeed: 20
+--- !u!114 &3316644999933702467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 242600636246400827}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440f4eebe08c6d74ba38a26eca9247c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossHealthBarBinder
+  bossName: Registry(Contorl by NULL.exe)
+  showDelay: 0
+  waitForEntrance: 1
+  hideOnDeath: 1
 --- !u!1 &993149436701121104
 GameObject:
   m_ObjectHideFlags: 0

@@ -328,6 +328,7 @@ GameObject:
   - component: {fileID: 8606027097683789011}
   - component: {fileID: 4189167251233379273}
   - component: {fileID: 8870070551171740423}
+  - component: {fileID: 8751408853244866147}
   m_Layer: 0
   m_Name: FirewallBoss
   m_TagString: Enemy
@@ -363,7 +364,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3491f9fe1e06e24eb1d7a70d73fe96a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  maxHealth: 600
+  maxHealth: 2400
   xpReward: 300
   destroyOnDeath: 1
   destroyDelay: 0
@@ -517,11 +518,29 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.5, y: 0.5}
-      - {x: -0.5, y: -0.5}
+    - - {x: -9.034834, y: 0.52367496}
+      - {x: -9.022996, y: -0.5118375}
       - {x: 0.5, y: -0.5}
+      - {x: 9.01779, y: -0.51144505}
+      - {x: 9.00069, y: 0.5182109}
       - {x: 0.5, y: 0.5}
   m_UseDelaunayMesh: 1
+--- !u!114 &8751408853244866147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4712429826374605306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440f4eebe08c6d74ba38a26eca9247c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossHealthBarBinder
+  bossName: FireWall
+  showDelay: 0
+  waitForEntrance: 1
+  hideOnDeath: 1
 --- !u!1 &4726667331180259037
 GameObject:
   m_ObjectHideFlags: 0

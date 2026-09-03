@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 5008712668532878119}
   - component: {fileID: -7370239306055033946}
   m_Layer: 5
-  m_Name: SkillButton
+  m_Name: resistance_cap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,14 +215,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a4afbbe57727fe43bf289f4c34298a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkillPurchaseButton
-  skillId: dodge_boost
-  button: {fileID: 0}
-  nameText: {fileID: 0}
-  costText: {fileID: 0}
-  descriptionText: {fileID: 0}
-  frameImage: {fileID: 0}
-  unlockedMark: {fileID: 0}
-  lockedMark: {fileID: 0}
+  skillId: resistance_cap
+  button: {fileID: 5008712668532878119}
+  nameText: {fileID: 4812847196139760877}
+  costText: {fileID: 8056566891658615264}
+  descriptionText: {fileID: 8213259738426834400}
+  frameImage: {fileID: 2080412158496941960}
+  unlockedMark: {fileID: 4679800676619529474}
+  lockedMark: {fileID: 4933269197468302942}
   unlockedColor: {r: 0.3, g: 1, b: 0.6, a: 1}
   affordableColor: {r: 1, g: 1, b: 1, a: 1}
   lockedColor: {r: 0.4, g: 0.4, b: 0.45, a: 1}

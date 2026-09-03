@@ -704,7 +704,7 @@ MonoBehaviour:
       spawnPointGroupId: BOSS
     formatWarningOnStart: 1
     formatWarningDuration: 3
-  startDelay: 2
+  startDelay: 0
   waveIntroPause: 1.8
   spawnTelegraphDuration: 0.6
   advanceEarlyWhenCleared: 1
@@ -1816,6 +1816,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 360579447966129266, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 559097197251795405, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1896,16 +1900,36 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1040758533300444747, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1040758533300444747, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1903198227702551071, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1480350649}
+    - target: {fileID: 2261960598975132558, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4342498342518032638, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1480350653}
+    - target: {fileID: 4834393072465765847, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4984844676537692611, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5161005297976358378, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5579084356615433234, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
@@ -1924,10 +1948,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7265078286415086561, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7360584493496010945, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7459856796065107661, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 1480350653}
+    - target: {fileID: 8046162842943528053, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
+      propertyPath: m_text
+      value: TEST BOSS
+      objectReference: {fileID: 0}
     - target: {fileID: 8511650376785636997, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
       propertyPath: playerHealth
       value: 

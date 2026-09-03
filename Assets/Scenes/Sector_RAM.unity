@@ -789,7 +789,7 @@ MonoBehaviour:
       spawnPointGroupId: BOSS
     formatWarningOnStart: 1
     formatWarningDuration: 0
-  startDelay: 2
+  startDelay: 0
   waveIntroPause: 1.8
   spawnTelegraphDuration: 0.6
   advanceEarlyWhenCleared: 1

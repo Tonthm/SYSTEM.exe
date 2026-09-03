@@ -24,7 +24,29 @@ using UnityEngine.UI;
 /// </summary>
 public class BossHealthBarUI : MonoBehaviour
 {
-    public static BossHealthBarUI Instance { get; private set; }
+    private static BossHealthBarUI instance;
+
+    /// <summary>
+    /// หาแบบ lazy — เผื่อ Awake ยังไม่รัน (เช่นสคริปต์ถูก attach บน GameObject ที่ปิดอยู่)
+    /// จะได้ยัง Bind ได้และมี log บอกว่าตั้งค่าผิดตรงไหน แทนที่จะเงียบ ๆ ไม่ขึ้นอะไรเลย
+    /// </summary>
+    public static BossHealthBarUI Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindFirstObjectByType<BossHealthBarUI>(FindObjectsInactive.Include);
+
+                if (instance == null)
+                {
+                    Debug.LogWarning("[Boss Health Bar] ไม่พบ BossHealthBarUI ในฉากนี้ — หลอดเลือดบอสจะไม่ขึ้น");
+                }
+            }
+            return instance;
+        }
+        private set => instance = value;
+    }
 
     [Header("Refs")]
     [SerializeField] private GameObject barRoot;
@@ -64,7 +86,44 @@ public class BossHealthBarUI : MonoBehaviour
     {
         Instance = this;
         if (container != null) containerBasePos = container.anchoredPosition;
-        if (barRoot != null) barRoot.SetActive(false);
+
+        ValidateSetup();
+
+        if (barRoot != null && barRoot != gameObject) barRoot.SetActive(false);
+    }
+
+    /// <summary>เช็คการตั้งค่าที่พลาดกันบ่อย แล้วบอกให้ชัดว่าต้องแก้ตรงไหน</summary>
+    private void ValidateSetup()
+    {
+        if (barRoot == null)
+        {
+            Debug.LogWarning("[Boss Health Bar] ยังไม่ได้ลาก Bar Root เข้า Inspector");
+        }
+        else if (barRoot == gameObject)
+        {
+            Debug.LogError("[Boss Health Bar] Bar Root ห้ามเป็น GameObject ตัวเดียวกับสคริปต์นี้ " +
+                           "— สคริปต์จะปิดตัวเองแล้วทำงานไม่ได้ ให้ย้ายสคริปต์ไปไว้บน GameObject แม่ที่ active เสมอ");
+        }
+
+        if (container == null)
+        {
+            Debug.LogWarning("[Boss Health Bar] ยังไม่ได้ลาก Container เข้า Inspector");
+        }
+        else if (!Mathf.Approximately(container.pivot.x, 0.5f))
+        {
+            Debug.LogWarning($"[Boss Health Bar] Container Pivot X = {container.pivot.x} ควรเป็น 0.5 " +
+                             "ไม่งั้นหลอดจะยืดออกข้างเดียว");
+        }
+
+        if (fillImage == null)
+        {
+            Debug.LogWarning("[Boss Health Bar] ยังไม่ได้ลาก Fill Image");
+        }
+        else if (fillImage.type != Image.Type.Filled)
+        {
+            Debug.LogWarning("[Boss Health Bar] Fill Image ต้องตั้ง Image Type = Filled " +
+                             "(Fill Method = Horizontal, Origin = Left)");
+        }
     }
 
     private void OnDestroy()
@@ -118,8 +177,38 @@ public class BossHealthBarUI : MonoBehaviour
         if (bossNameText != null) bossNameText.text = bossName;
         if (phaseText != null) phaseText.text = "";
 
+        Debug.Log($"[Boss Health Bar] แสดงหลอดเลือดบอส: {bossName}");
+
+        // GameObject ที่มีสคริปต์นี้ปิดอยู่ = StartCoroutine ทำงานไม่ได้
+        // แสดงแบบไม่มีอนิเมชันแทน ดีกว่าไม่ขึ้นอะไรเลย
+        if (!gameObject.activeInHierarchy)
+        {
+            Debug.LogWarning("[Boss Health Bar] GameObject ของสคริปต์นี้ปิดอยู่ — ข้ามอนิเมชัน " +
+                             "ให้ย้ายสคริปต์ไปไว้บน GameObject ที่ active เสมอ");
+            ShowInstant();
+            return;
+        }
+
         if (transitionRoutine != null) StopCoroutine(transitionRoutine);
         transitionRoutine = StartCoroutine(GrowRoutine());
+    }
+
+    private void ShowInstant()
+    {
+        if (barRoot != null) barRoot.SetActive(true);
+        if (container != null)
+        {
+            container.gameObject.SetActive(true);
+            SetWidthRatio(1f);
+        }
+    }
+
+    /// <summary>ทดสอบใน Editor: คลิกขวาที่ component แล้วเลือก Test Show</summary>
+    [ContextMenu("Test Show")]
+    private void TestShow()
+    {
+        Show("TEST BOSS");
+        SetProgress(0.7f);
     }
 
     /// <summary>ตั้งค่าหลอดโดยตรง 0-1 (ตะขาบใช้สัดส่วนปล้องที่เหลือ)</summary>
@@ -136,6 +225,12 @@ public class BossHealthBarUI : MonoBehaviour
 
     public void Hide()
     {
+        if (!gameObject.activeInHierarchy)
+        {
+            if (barRoot != null) barRoot.SetActive(false);
+            return;
+        }
+
         if (transitionRoutine != null) StopCoroutine(transitionRoutine);
         transitionRoutine = StartCoroutine(ShrinkRoutine());
     }
@@ -167,6 +262,8 @@ public class BossHealthBarUI : MonoBehaviour
     {
         if (barRoot != null) barRoot.SetActive(true);
         if (container == null) yield break;
+
+        container.gameObject.SetActive(true);
 
         // กะพริบเป็นขีดเล็ก ๆ กลางจอก่อน
         SetWidthRatio(startWidthRatio);

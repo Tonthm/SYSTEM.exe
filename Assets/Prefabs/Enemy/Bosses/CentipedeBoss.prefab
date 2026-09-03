@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4058041734548552141}
   - component: {fileID: 7710916914213754741}
   - component: {fileID: 8960354766725495544}
+  - component: {fileID: 2526984278599997374}
   m_Layer: 0
   m_Name: CentipedeBoss
   m_TagString: Untagged
@@ -72,3 +73,19 @@ MonoBehaviour:
   initialSpacing: 1.78
   initialBodyDirection: {x: 1, y: 0}
   headHealthMultiplier: 2
+--- !u!114 &2526984278599997374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5446242241765984979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 440f4eebe08c6d74ba38a26eca9247c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossHealthBarBinder
+  bossName: Centipede
+  showDelay: 0
+  waitForEntrance: 1
+  hideOnDeath: 1
