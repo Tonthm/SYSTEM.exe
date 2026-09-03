@@ -30,6 +30,13 @@ public class BossHealthBarBinder : MonoBehaviour
     [Tooltip("รอให้ BossEntrance ลงมาเสร็จก่อนค่อยแสดงหลอด (ถ้ามี BossEntrance บนตัวเดียวกัน)")]
     [SerializeField] private bool waitForEntrance = true;
 
+    [Header("Music")]
+    [Tooltip("เพลงประจำบอสตัวนี้ — เว้นว่าง = ไม่เปลี่ยนเพลง")]
+    [SerializeField] private string bossMusicId = "";
+    [Tooltip("เพลงที่จะกลับไปเล่นหลังบอสตาย")]
+    [SerializeField] private string musicAfterDeath = AudioIds.MusicGameplay;
+    [SerializeField] private float musicFadeDuration = 1.5f;
+
     [Header("Behaviour")]
     [Tooltip("ซ่อนหลอดตอนบอสตาย")]
     [SerializeField] private bool hideOnDeath = true;
@@ -74,6 +81,8 @@ public class BossHealthBarBinder : MonoBehaviour
         bar.Bind(health, bossName);
         Debug.Log($"[{name}] ผูกหลอดเลือดบอสแล้ว: {bossName}");
 
+        if (!string.IsNullOrEmpty(bossMusicId)) AudioManager.PlayMusic(bossMusicId, musicFadeDuration);
+
         if (hideOnDeath) health.OnDeath += HandleDeath;
     }
 
@@ -84,6 +93,12 @@ public class BossHealthBarBinder : MonoBehaviour
 
     private void HandleDeath()
     {
+        AudioManager.Play(AudioIds.BossDeath);
         BossHealthBarUI.Instance?.Hide();
+
+        if (!string.IsNullOrEmpty(bossMusicId) && !string.IsNullOrEmpty(musicAfterDeath))
+        {
+            AudioManager.PlayMusic(musicAfterDeath, musicFadeDuration);
+        }
     }
 }

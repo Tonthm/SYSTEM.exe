@@ -88,4 +88,7 @@ MonoBehaviour:
   bossName: Centipede
   showDelay: 0
   waitForEntrance: 1
+  bossMusicId: music_boss_ram
+  musicAfterDeath: music_gameplay
+  musicFadeDuration: 1.5
   hideOnDeath: 1

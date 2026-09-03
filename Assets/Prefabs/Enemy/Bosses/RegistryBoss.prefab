@@ -178,6 +178,9 @@ MonoBehaviour:
   bossName: Registry(Contorl by NULL.exe)
   showDelay: 0
   waitForEntrance: 1
+  bossMusicId: music_boss_registry
+  musicAfterDeath: music_gameplay
+  musicFadeDuration: 1.5
   hideOnDeath: 1
 --- !u!1 &993149436701121104
 GameObject:

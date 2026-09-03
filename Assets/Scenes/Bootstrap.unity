@@ -119,6 +119,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &20077477
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 20077478}
+  - component: {fileID: 20077479}
+  m_Layer: 0
+  m_Name: SceneMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &20077478
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20077477}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 608686639}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &20077479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20077477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 285fa4b9b4ce43349bec4a8c1036089e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneMusic
+  musicId: music_gameplay
+  fadeDuration: 1.5
+  startDelay: 0
 --- !u!1 &54350629
 GameObject:
   m_ObjectHideFlags: 0
@@ -847,6 +894,8 @@ Transform:
   - {fileID: 1539877652}
   - {fileID: 1056759342}
   - {fileID: 404706199}
+  - {fileID: 1697794187}
+  - {fileID: 20077478}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &635122842
@@ -1626,6 +1675,353 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0d25712f81445f4e8510d3e790a7ef9, type: 3}
+--- !u!1 &1697794186
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1697794187}
+  - component: {fileID: 1697794188}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1697794187
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697794186}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.32822, y: -1.22051, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 608686639}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1697794188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1697794186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c68c268557ff784794de0344fa074ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  sfxMixerGroup: {fileID: 0}
+  musicMixerGroup: {fileID: 0}
+  masterSfxVolume: 1
+  masterMusicVolume: 0.6
+  sfxSourceCount: 20
+  sounds:
+  - id: music_menu
+    clips: []
+    volume: 0
+    pitchVariance: 0
+    minInterval: 0
+    maxSimultaneous: 0
+    lastPlayTime: 0
+    activeCount: 0
+  - id: music_gameplay
+    clips: []
+    volume: 0
+    pitchVariance: 0
+    minInterval: 0
+    maxSimultaneous: 0
+    lastPlayTime: 0
+    activeCount: 0
+  - id: music_boss_firewall
+    clips: []
+    volume: 0
+    pitchVariance: 0
+    minInterval: 0
+    maxSimultaneous: 0
+    lastPlayTime: 0
+    activeCount: 0
+  - id: music_boss_ram
+    clips: []
+    volume: 0
+    pitchVariance: 0
+    minInterval: 0
+    maxSimultaneous: 0
+    lastPlayTime: 0
+    activeCount: 0
+  - id: music_boss_registry
+    clips: []
+    volume: 0
+    pitchVariance: 0
+    minInterval: 0
+    maxSimultaneous: 0
+    lastPlayTime: 0
+    activeCount: 0
+  - id: music_victory
+    clips: []
+    volume: 0
+    pitchVariance: 0
+    minInterval: 0
+    maxSimultaneous: 0
+    lastPlayTime: 0
+    activeCount: 0
+  - id: player_shoot
+    clips: []
+    volume: 0.35
+    pitchVariance: 0.1
+    minInterval: 0.05
+    maxSimultaneous: 3
+    lastPlayTime: 0
+    activeCount: 0
+  - id: player_dash
+    clips: []
+    volume: 0.7
+    pitchVariance: 0.05
+    minInterval: 0.1
+    maxSimultaneous: 2
+    lastPlayTime: 0
+    activeCount: 0
+  - id: player_hit
+    clips: []
+    volume: 0.9
+    pitchVariance: 0.08
+    minInterval: 0.15
+    maxSimultaneous: 2
+    lastPlayTime: 0
+    activeCount: 0
+  - id: player_death
+    clips: []
+    volume: 1
+    pitchVariance: 0
+    minInterval: 0.5
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeCount: 0
+  - id: player_reborn
+    clips: []
+    volume: 0.9
+    pitchVariance: 0
+    minInterval: 0.5
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeCount: 0
+  - id: bullet_hit_enemy
+    clips: []
+    volume: 0.4
+    pitchVariance: 0.12
+    minInterval: 0.04
+    maxSimultaneous: 4
+    lastPlayTime: 0
+    activeCount: 0
+  - id: enemy_death
+    clips: []
+    volume: 0.6
+    pitchVariance: 0.1
+    minInterval: 0.05
+    maxSimultaneous: 5
+    lastPlayTime: 0
+    activeCount: 0
+  - id: enemy_spawn
+    clips: []
+    volume: 0.5
+    pitchVariance: 0.08
+    minInterval: 0.08
+    maxSimultaneous: 4
+    lastPlayTime: 0
+    activeCount: 0
+  - id: chaser_lunge
+    clips: []
+    volume: 0.7
+    pitchVariance: 0.06
+    minInterval: 0.1
+    maxSimultaneous: 3
+    lastPlayTime: 0
+    activeCount: 0
+  - id: swarmer_split
+    clips: []
+    volume: 0.6
+    pitchVariance: 0.1
+    minInterval: 0.08
+    maxSimultaneous: 3
+    lastPlayTime: 0
+    activeCount: 0
+  - id: turret_charge
+    clips: []
+    volume: 0.6
+    pitchVariance: 0.05
+    minInterval: 0.15
+    maxSimultaneous: 3
+    lastPlayTime: 0
+    activeCount: 0
+  - id: boss_warning
+    clips: []
+    volume: 1
+    pitchVariance: 0
+    minInterval: 1
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeCount: 0
+  - id: boss_appear
+    clips: []
+    volume: 0.9
+    pitchVariance: 0
+    minInterval: 1
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeCount: 0
+  - id: boss_death
+    clips: []
+    volume: 0.9
+    pitchVariance: 0
+    minInterval: 1
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeCount: 0
+  - id: boss_shoot_firewall
+    clips: []
+    volume: 0.5
+    pitchVariance: 0.05
+    minInterval: 1
+    maxSimultaneous: 2
+    lastPlayTime: 0
+    activeCount: 0
+  - id: boss_shoot_ram
+    clips: []
+    volume: 0.3
+    pitchVariance: 0.1
+    minInterval: 0.12
+    maxSimultaneous: 3
+    lastPlayTime: 0
+    activeCount: 0
+  - id: boss_shoot_registry
+    clips: []
+    volume: 0.6
+    pitchVariance: 0.05
+    minInterval: 0.2
+    maxSimultaneous: 3
+    lastPlayTime: 0
+    activeCount: 0
+  - id: laser_charge
+    clips: []
+    volume: 0.7
+    pitchVariance: 0.03
+    minInterval: 0.15
+    maxSimultaneous: 4
+    lastPlayTime: 0
+    activeCount: 0
+  - id: wave_start
+    clips: []
+    volume: 0.8
+    pitchVariance: 0
+    minInterval: 1
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeCount: 0
+  - id: wave_cleared
+    clips: []
+    volume: 0.8
+    pitchVariance: 0
+    minInterval: 1
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeCount: 0
+  - id: sector_exit
+    clips: []
+    volume: 0.9
+    pitchVariance: 0
+    minInterval: 1
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeCount: 0
+  - id: force_format
+    clips: []
+    volume: 1
+    pitchVariance: 0
+    minInterval: 1
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeCount: 0
+  - id: fragment_drop
+    clips: []
+    volume: 0.8
+    pitchVariance: 0
+    minInterval: 0.5
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeCount: 0
+  - id: fragment_pickup
+    clips: []
+    volume: 0.9
+    pitchVariance: 0
+    minInterval: 0.3
+    maxSimultaneous: 2
+    lastPlayTime: 0
+    activeCount: 0
+  - id: fragment_expire
+    clips: []
+    volume: 0.9
+    pitchVariance: 0
+    minInterval: 0.5
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeCount: 0
+  - id: item_pickup
+    clips: []
+    volume: 0.7
+    pitchVariance: 0
+    minInterval: 0.2
+    maxSimultaneous: 2
+    lastPlayTime: 0
+    activeCount: 0
+  - id: low_health_beat
+    clips: []
+    volume: 0.8
+    pitchVariance: 0
+    minInterval: 0.2
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeCount: 0
+  - id: ui_click
+    clips: []
+    volume: 0.6
+    pitchVariance: 0
+    minInterval: 0.2
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeCount: 0
+  - id: ui_purchase
+    clips: []
+    volume: 0.8
+    pitchVariance: 0
+    minInterval: 0.2
+    maxSimultaneous: 2
+    lastPlayTime: 0
+    activeCount: 0
+  - id: ui_denied
+    clips: []
+    volume: 0.7
+    pitchVariance: 0
+    minInterval: 0.2
+    maxSimultaneous: 2
+    lastPlayTime: 0
+    activeCount: 0
+  - id: ui_pause
+    clips: []
+    volume: 0.6
+    pitchVariance: 0
+    minInterval: 0.2
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeCount: 0
+  warnOnMissingId: 1
 --- !u!1001 &1708042012
 PrefabInstance:
   m_ObjectHideFlags: 0

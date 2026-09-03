@@ -540,6 +540,9 @@ MonoBehaviour:
   bossName: FireWall
   showDelay: 0
   waitForEntrance: 1
+  bossMusicId: music_boss_firewall
+  musicAfterDeath: music_gameplay
+  musicFadeDuration: 1.5
   hideOnDeath: 1
 --- !u!1 &4726667331180259037
 GameObject:
