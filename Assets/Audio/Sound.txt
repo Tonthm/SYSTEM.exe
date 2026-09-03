@@ -1,0 +1,39 @@
+music_menu
+music_gameplay
+music_boss_firewall
+music_boss_ram
+music_boss_registry
+music_victory
+player_shoot /
+player_dash /
+player_hit /
+player_death /
+player_reborn /
+bullet_hit_enemy /
+bullet_hit_wall
+enemy_death /
+enemy_spawn /
+chaser_lunge 
+swarmer_split
+turret_charge 
+boss_warning
+boss_appear /
+boss_death /
+boss_shoot_firewall 
+boss_shoot_ram /
+boss_shoot_registry /
+laser_charge
+wave_start 
+wave_cleared 
+sector_exit /
+force_format 
+fragment_drop /
+fragment_pickup /
+fragment_expire
+item_pickup /
+low_health_beat
+glitch_ambience
+ui_click /
+ui_purchase 
+ui_denied 
+ui_pause 
