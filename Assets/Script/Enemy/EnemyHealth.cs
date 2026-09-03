@@ -172,6 +172,8 @@ public class EnemyHealth : MonoBehaviour
         isDead = true;
         currentHealth = 0f;
 
+        AudioManager.Play(AudioIds.EnemyDeath);
+
         if (deathEffectPrefab != null)
         {
             GameObject fx = Instantiate(deathEffectPrefab, transform.position, Quaternion.identity);

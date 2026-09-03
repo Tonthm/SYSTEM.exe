@@ -78,6 +78,8 @@ public class BossEntrance : MonoBehaviour
         SetComponentsEnabled(true);
         IsEntering = false;
 
+        AudioManager.Play(AudioIds.BossAppear);
+
         Debug.Log($"[Boss Entrance] {name} เข้าสนามแล้ว");
         OnEntranceComplete?.Invoke();
     }

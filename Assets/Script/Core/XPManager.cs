@@ -67,6 +67,20 @@ public class XPManager : MonoBehaviour
         return value;
     }
 
+    /// <summary>ล้าง XP ทั้งหมด (ใช้กับปุ่ม Reset Progress)</summary>
+    public void ResetAllXP()
+    {
+        PermanentXP = 0;
+        RunTempXP = 0;
+
+        PlayerPrefs.SetInt(SaveKey_PermanentXP, 0);
+        PlayerPrefs.Save();
+
+        OnPermanentXPChanged?.Invoke(PermanentXP);
+        OnRunTempXPChanged?.Invoke(RunTempXP);
+        Debug.Log("[XP] ล้าง XP ทั้งหมดแล้ว");
+    }
+
     /// <summary>บันทึกค่า XP ปัจจุบัน (WaveManager เรียกตอนเริ่ม wave)</summary>
     public XPSnapshot TakeSnapshot() => new XPSnapshot { permanent = PermanentXP, runTemp = RunTempXP };
 

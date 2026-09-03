@@ -49,6 +49,12 @@ public class WaveManager : MonoBehaviour
     [Tooltip("ปลดล็อกสกิล Overclock แล้ว โบนัส (และเพดาน) คูณด้วยเท่านี้")]
     [SerializeField] private float overclockSkillMultiplier = 2f;
 
+    [Header("Wave Clear Reward")]
+    [Tooltip("ฮีล HP ให้ผู้เล่นตอนจบ wave (0 = ไม่ฮีล)")]
+    [SerializeField] private float healOnWaveClear = 50f;
+    [Tooltip("ฮีลเฉพาะตอนเคลียร์ศัตรูหมดจริง ไม่ใช่ปล่อยให้หมดเวลา")]
+    [SerializeField] private bool healOnlyIfClearedEarly = false;
+
     [Header("Stale Penalty (ศัตรูค้างจาก wave ก่อน)")]
     [Tooltip("ตัวคูณ XP ของศัตรูที่ค้างข้าม wave (0.5 = ได้ XP ครึ่งเดียว)")]
     [Range(0f, 1f)]
@@ -221,6 +227,7 @@ public class WaveManager : MonoBehaviour
 
         // ยิง event ก่อน แล้วค่อยรอให้แผง Wave Intro เล่นจบ
         // ศัตรูจะยังไม่ spawn ระหว่างนี้ ผู้เล่นจึงอ่านชื่อ wave ได้ทัน (รวมถึง wave 1)
+        AudioManager.Play(AudioIds.WaveStart);
         OnWaveStarted?.Invoke(index + 1, wave);
         if (waveIntroPause > 0f) yield return new WaitForSeconds(waveIntroPause);
 
@@ -262,6 +269,7 @@ public class WaveManager : MonoBehaviour
                 if (cleared)
                 {
                     lastWaveClearedEarly = true;
+                    AudioManager.Play(AudioIds.WaveCleared);
                     Debug.Log($"[Wave] Wave {index + 1} เคลียร์ก่อนหมดเวลา (เหลือ {waveTimeRemaining:F1}s)");
                     GrantSpeedClearBonus(waveTimeRemaining);
                     break;
@@ -273,11 +281,34 @@ public class WaveManager : MonoBehaviour
         }
 
         int carriedOver = MarkRemainingAsStale();
+        HealPlayerForWaveClear();
 
         // เคลียร์ wave โดยไม่ตายเลย = ลด Corruption (ทางแก้ตัวหลักของผู้เล่น)
         CorruptionMeter.Instance?.OnWaveCleared(diedThisWave);
 
         OnWaveEnded?.Invoke(index + 1, carriedOver, lastWaveClearedEarly);
+    }
+
+    /// <summary>
+    /// ฮีลผู้เล่นเป็นรางวัลของการรอดจบ wave
+    /// ทำให้ wave ท้าย ๆ ไม่กลายเป็นการเสียเลือดสะสมจนตายแน่นอน
+    /// </summary>
+    private void HealPlayerForWaveClear()
+    {
+        if (healOnWaveClear <= 0f) return;
+        if (healOnlyIfClearedEarly && !lastWaveClearedEarly) return;
+
+        var playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj == null) return;
+
+        var health = playerObj.GetComponent<PlayerHealth>();
+        if (health == null) return;
+
+        float before = health.CurrentHealth;
+        health.Heal(healOnWaveClear);
+
+        float gained = health.CurrentHealth - before;
+        if (gained > 0f) Debug.Log($"[Wave] จบ wave — ฮีล +{gained:F0} HP");
     }
 
     /// <summary>ให้ XP โบนัสตามวินาทีที่เหลือ — รางวัลของการเคลียร์ไว</summary>

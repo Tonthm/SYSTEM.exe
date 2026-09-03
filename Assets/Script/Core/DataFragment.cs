@@ -62,6 +62,7 @@ public class DataFragment : MonoBehaviour
         {
             string lost = payload != null ? payload.Describe() : "empty";
             Debug.Log($"[Fragment Inheritance] Fragment expired — lost permanently this run ({lost})");
+            AudioManager.Play(AudioIds.FragmentExpire);
             Destroy(gameObject);
         }
     }
@@ -73,6 +74,8 @@ public class DataFragment : MonoBehaviour
 
         if (payload.tempXP > 0) XPManager.Instance?.AddRunTempXP(payload.tempXP);
         if (payload.ItemCount > 0) RunInventory.Instance?.RestoreAll(payload.items);
+
+        AudioManager.Play(AudioIds.FragmentPickup);
 
         Debug.Log($"[Fragment Inheritance] Recovered {payload.Describe()}");
         Destroy(gameObject);

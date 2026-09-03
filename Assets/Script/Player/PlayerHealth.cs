@@ -45,6 +45,7 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= amount;
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
         OnDamaged?.Invoke(amount, cause);
+        AudioManager.Play(AudioIds.PlayerHit);
 
         if (currentHealth <= 0f)
         {
@@ -68,6 +69,7 @@ public class PlayerHealth : MonoBehaviour
     private void Die(BulletPatternType cause, string sourceName)
     {
         isDead = true;
+        AudioManager.Play(AudioIds.PlayerDeath);
 
         // 1. บันทึกสาเหตุการตาย (Death Log — Task Manager UI จะดึงข้อมูลนี้ไปแสดง)
         DeathLogManager.Instance?.LogDeath(cause, transform.position, sourceName);

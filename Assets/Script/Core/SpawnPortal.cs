@@ -77,6 +77,7 @@ public class SpawnPortal : MonoBehaviour
         }
 
         SetVisual(openScale, openColor);
+        AudioManager.Play(AudioIds.EnemySpawn);
         yield return null;   // เฟรมที่ศัตรูโผล่
 
         // หด

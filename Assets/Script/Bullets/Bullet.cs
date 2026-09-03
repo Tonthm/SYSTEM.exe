@@ -82,6 +82,7 @@ public class Bullet : MonoBehaviour
                 var health = other.GetComponent<EnemyHealth>();
                 // ส่งตำแหน่งกระสุนไปด้วย เผื่อศัตรูมีโล่กันด้านหน้า (DirectionalShield)
                 if (health != null) health.TakeDamage(damage, transform.position);
+                AudioManager.Play(AudioIds.BulletHitEnemy);
                 Destroy(gameObject);
             }
         }
@@ -111,6 +112,7 @@ public class Bullet : MonoBehaviour
 
         if (other.CompareTag("Wall"))
         {
+            AudioManager.Play(AudioIds.BulletHitWall);
             Destroy(gameObject);
         }
     }

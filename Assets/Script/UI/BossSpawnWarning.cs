@@ -96,6 +96,8 @@ public class BossSpawnWarning : MonoBehaviour
         if (warningRoot != null) warningRoot.SetActive(true);
         if (warningText != null) warningText.text = warningMessage;
 
+        AudioManager.Play(AudioIds.BossWarning);
+
         if (triggerFormatWarning)
         {
             SystemInterferenceManager.Instance?.TriggerFormatWarning(warningDuration);

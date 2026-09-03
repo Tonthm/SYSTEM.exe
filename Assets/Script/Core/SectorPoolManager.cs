@@ -48,8 +48,22 @@ public class SectorPoolManager : MonoBehaviour
     /// <summary>ด่านถัดไปคือหน้าจบเกมแล้วหรือยัง (ผ่านครบทุกด่านในคลัง + เนื้อเรื่อง)</summary>
     public bool IsNextSectorVictory()
     {
-        string next = GetNextSector();
-        return !string.IsNullOrEmpty(victorySceneName) && next == victorySceneName;
+        if (string.IsNullOrEmpty(victorySceneName))
+        {
+            Debug.LogWarning("[Sector Pool] ยังไม่ได้ตั้ง Victory Scene Name — จบเกมไม่ได้");
+            return false;
+        }
+
+        return GetNextSector() == victorySceneName;
+    }
+
+    /// <summary>พิมพ์สถานะปัจจุบันลง Console — ใช้ตอนหาสาเหตุว่าทำไมไม่ไปด่านถัดไป</summary>
+    [ContextMenu("Log Progress")]
+    public void LogProgress()
+    {
+        string cleared = clearedSectors.Count > 0 ? string.Join(", ", clearedSectors) : "(ยังไม่ผ่านด่านในคลังเลย)";
+        Debug.Log($"[Sector Pool] tutorial={HasCompletedTutorial} | pool {clearedSectors.Count}/{allSectorScenes.Count} [{cleared}] " +
+                  $"| story {storyIndex}/{storySectorScenes.Count} | ด่านถัดไป = {GetNextSector()}");
     }
 
     public int ClearedCount => clearedSectors.Count;
@@ -128,13 +142,12 @@ public class SectorPoolManager : MonoBehaviour
             return;
         }
 
-        if (storySectorScenes.Contains(sceneName))
+        int storySlot = storySectorScenes.IndexOf(sceneName);
+        if (storySlot >= 0)
         {
-            // นับเฉพาะตอนผ่านด่านเนื้อเรื่องที่ค้างอยู่จริง กันการนับซ้ำ
-            if (storyIndex < storySectorScenes.Count && storySectorScenes[storyIndex] == sceneName)
-            {
-                storyIndex++;
-            }
+            // เดินหน้าไปให้พ้นด่านนี้เสมอ ไม่ต้องผ่านเรียงลำดับเป๊ะ
+            // (กันกรณีกด Play จาก Scene ด่านตรง ๆ ตอนเทสต์ แล้ว storyIndex ค้างไม่ตรงกับความจริง)
+            if (storySlot + 1 > storyIndex) storyIndex = storySlot + 1;
         }
         else if (!clearedSectors.Contains(sceneName))
         {
@@ -142,7 +155,7 @@ public class SectorPoolManager : MonoBehaviour
         }
 
         SaveProgress();
-        Debug.Log($"[Sector Pool] Cleared: {sceneName} ({clearedSectors.Count}/{allSectorScenes.Count} pool, story {storyIndex}/{storySectorScenes.Count})");
+        Debug.Log($"[Sector Pool] Cleared: {sceneName} ({clearedSectors.Count}/{allSectorScenes.Count} pool, story {storyIndex}/{storySectorScenes.Count}) → ด่านถัดไป = {GetNextSector()}");
     }
 
     /// <summary>เรียกจาก TutorialSectorController เมื่อจบด่านสอนเล่น</summary>
@@ -176,6 +189,14 @@ public class SectorPoolManager : MonoBehaviour
             LoadVictoryScene();
             return;
         }
+
+        if (!Application.CanStreamedLevelBeLoaded(sceneName))
+        {
+            Debug.LogError($"[Sector Pool] โหลด Scene '{sceneName}' ไม่ได้ — " +
+                           "ยังไม่ได้เพิ่มใน File > Build Settings > Scenes In Build หรือสะกดชื่อไม่ตรง");
+            return;
+        }
+
         SceneManager.LoadScene(sceneName);
     }
 
@@ -183,10 +204,31 @@ public class SectorPoolManager : MonoBehaviour
     {
         if (string.IsNullOrEmpty(victorySceneName))
         {
-            Debug.LogWarning("[Sector Pool] ยังไม่ได้ตั้งชื่อ Victory Scene ใน Inspector");
+            Debug.LogError("[Sector Pool] ยังไม่ได้กรอก Victory Scene Name ใน Inspector — " +
+                           "จบเกมแล้วแต่ไปหน้าจบไม่ได้");
             return;
         }
+
+        if (!Application.CanStreamedLevelBeLoaded(victorySceneName))
+        {
+            Debug.LogError($"[Sector Pool] โหลด Victory Scene '{victorySceneName}' ไม่ได้ — " +
+                           "ยังไม่ได้เพิ่มใน Build Settings หรือสะกดชื่อไม่ตรง");
+            return;
+        }
+
         SceneManager.LoadScene(victorySceneName);
+    }
+
+    /// <summary>ล้างข้อมูลผู้เล่นทุกอย่าง — ความคืบหน้าด่าน, สกิล, XP, ตารางสถิติ</summary>
+    public void ResetEverything()
+    {
+        ResetAllProgress();
+        SkillTreeManager.Instance?.ResetAllSkills();
+        XPManager.Instance?.ResetAllXP();
+        RunInventory.Instance?.ClearRun();
+        LocalLeaderboard.Clear();
+
+        Debug.Log("[Sector Pool] ล้างข้อมูลผู้เล่นทั้งหมดแล้ว");
     }
 
     /// <summary>ล้าง save ทั้งหมด (ปุ่ม New Game / ใช้ทดสอบ)</summary>

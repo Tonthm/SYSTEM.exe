@@ -124,6 +124,7 @@ public class CursorChaser : EnemyAIBase
 
     private void EnterLunge()
     {
+        AudioManager.Play(AudioIds.ChaserLunge);
         state = State.Lunge;
         stateTimer = lungeDuration;
         if (aimFlashTarget != null) aimFlashTarget.color = baseColor;

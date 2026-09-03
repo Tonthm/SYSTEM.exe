@@ -104,6 +104,7 @@ public class CorruptionMeter : MonoBehaviour
         }
 
         Debug.Log("[Corruption Meter] FORCE FORMAT triggered");
+        AudioManager.Play(AudioIds.ForceFormat);
 
         if (wipeResistanceOnFormat) BulletPatternMemory.Instance?.ResetAll();
         if (wipeRunInventoryOnFormat) RunInventory.Instance?.ClearRun();

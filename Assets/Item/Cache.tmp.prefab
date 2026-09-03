@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemPickup
   item:
-    id: item
+    id: Cache.tmp
     displayName: Cache.tmp
     type: 1
     fireRateMultiplier: 1

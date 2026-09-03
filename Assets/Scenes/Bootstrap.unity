@@ -1038,7 +1038,7 @@ MonoBehaviour:
   skills:
   - id: dodge_boost
     displayName: Dodge Boost
-    description: "Dash cooldown \xD70.7 (0.80 -> 0.56 \u0E27\u0E34)"
+    description: "Dash cooldown \xD70.7 (0.80 -> 0.56 s)"
     cost: 120
     requiresSkillId: 
     unlocked: 0
@@ -1291,6 +1291,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 460bab8ea07a4f541ba856ccf7d6ae7f, type: 3}
+--- !u!1001 &1378211096
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 242600636246400827, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_Name
+      value: RegistryBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.5347161
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.11358464
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
 --- !u!1 &1442827572
 GameObject:
   m_ObjectHideFlags: 0
@@ -1732,7 +1789,7 @@ MonoBehaviour:
     minInterval: 0
     maxSimultaneous: 0
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: music_gameplay
     clips: []
     volume: 0
@@ -1740,7 +1797,7 @@ MonoBehaviour:
     minInterval: 0
     maxSimultaneous: 0
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: music_boss_firewall
     clips: []
     volume: 0
@@ -1748,7 +1805,7 @@ MonoBehaviour:
     minInterval: 0
     maxSimultaneous: 0
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: music_boss_ram
     clips: []
     volume: 0
@@ -1756,7 +1813,7 @@ MonoBehaviour:
     minInterval: 0
     maxSimultaneous: 0
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: music_boss_registry
     clips: []
     volume: 0
@@ -1764,7 +1821,7 @@ MonoBehaviour:
     minInterval: 0
     maxSimultaneous: 0
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: music_victory
     clips: []
     volume: 0
@@ -1772,71 +1829,79 @@ MonoBehaviour:
     minInterval: 0
     maxSimultaneous: 0
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: player_shoot
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 736c54e46f4f7694494858879ae84348, type: 3}
     volume: 0.35
     pitchVariance: 0.1
     minInterval: 0.05
     maxSimultaneous: 3
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: player_dash
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 57a316bd37d482844b215de78461b887, type: 3}
     volume: 0.7
     pitchVariance: 0.05
     minInterval: 0.1
     maxSimultaneous: 2
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: player_hit
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: e3f3bf7fc3c2ea046907484baa9ad09f, type: 3}
     volume: 0.9
     pitchVariance: 0.08
     minInterval: 0.15
     maxSimultaneous: 2
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: player_death
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 6a305de443eef434cb7c80998bd330c0, type: 3}
     volume: 1
     pitchVariance: 0
     minInterval: 0.5
     maxSimultaneous: 1
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: player_reborn
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 513e2369c35d284448d874b362e1ce7d, type: 3}
     volume: 0.9
     pitchVariance: 0
     minInterval: 0.5
     maxSimultaneous: 1
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: bullet_hit_enemy
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 4cd736abd2548ad46abede73e49b64c9, type: 3}
     volume: 0.4
     pitchVariance: 0.12
     minInterval: 0.04
     maxSimultaneous: 4
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: enemy_death
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 4c30af57204771a49b44e6c23b11d549, type: 3}
     volume: 0.6
     pitchVariance: 0.1
     minInterval: 0.05
     maxSimultaneous: 5
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: enemy_spawn
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 72c2480900adb8e4eb8dbbebb48a7e1c, type: 3}
     volume: 0.5
     pitchVariance: 0.08
     minInterval: 0.08
     maxSimultaneous: 4
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: chaser_lunge
     clips: []
     volume: 0.7
@@ -1844,7 +1909,7 @@ MonoBehaviour:
     minInterval: 0.1
     maxSimultaneous: 3
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: swarmer_split
     clips: []
     volume: 0.6
@@ -1852,7 +1917,7 @@ MonoBehaviour:
     minInterval: 0.08
     maxSimultaneous: 3
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: turret_charge
     clips: []
     volume: 0.6
@@ -1860,7 +1925,7 @@ MonoBehaviour:
     minInterval: 0.15
     maxSimultaneous: 3
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: boss_warning
     clips: []
     volume: 1
@@ -1868,47 +1933,52 @@ MonoBehaviour:
     minInterval: 1
     maxSimultaneous: 1
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: boss_appear
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: d13669e6fbce1554ab524125677ddac4, type: 3}
     volume: 0.9
     pitchVariance: 0
     minInterval: 1
     maxSimultaneous: 1
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: boss_death
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: b523b0897731f704cad038d3eded7b4a, type: 3}
     volume: 0.9
     pitchVariance: 0
     minInterval: 1
     maxSimultaneous: 1
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: boss_shoot_firewall
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: c62118a663217a0419c23b4dcb40a57b, type: 3}
     volume: 0.5
     pitchVariance: 0.05
     minInterval: 1
     maxSimultaneous: 2
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: boss_shoot_ram
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 76c1199bc7ce61e4c8fdbad628c30943, type: 3}
     volume: 0.3
     pitchVariance: 0.1
     minInterval: 0.12
     maxSimultaneous: 3
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: boss_shoot_registry
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: c74d5a83ff3744a408c2edeb941b62b5, type: 3}
     volume: 0.6
     pitchVariance: 0.05
-    minInterval: 0.2
-    maxSimultaneous: 3
+    minInterval: 0
+    maxSimultaneous: 0
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: laser_charge
     clips: []
     volume: 0.7
@@ -1916,15 +1986,16 @@ MonoBehaviour:
     minInterval: 0.15
     maxSimultaneous: 4
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: wave_start
-    clips: []
+    clips:
+    - {fileID: 0}
     volume: 0.8
     pitchVariance: 0
     minInterval: 1
     maxSimultaneous: 1
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: wave_cleared
     clips: []
     volume: 0.8
@@ -1932,15 +2003,16 @@ MonoBehaviour:
     minInterval: 1
     maxSimultaneous: 1
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: sector_exit
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 07ae0e075644bae4e82fb80447bee093, type: 3}
     volume: 0.9
     pitchVariance: 0
     minInterval: 1
     maxSimultaneous: 1
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: force_format
     clips: []
     volume: 1
@@ -1948,23 +2020,25 @@ MonoBehaviour:
     minInterval: 1
     maxSimultaneous: 1
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: fragment_drop
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: 20707832355f4bc46a5166f90478c57e, type: 3}
     volume: 0.8
     pitchVariance: 0
     minInterval: 0.5
     maxSimultaneous: 1
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: fragment_pickup
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: b05a364eb0b5eb343af4fb2394cda1c4, type: 3}
     volume: 0.9
     pitchVariance: 0
     minInterval: 0.3
     maxSimultaneous: 2
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: fragment_expire
     clips: []
     volume: 0.9
@@ -1972,15 +2046,16 @@ MonoBehaviour:
     minInterval: 0.5
     maxSimultaneous: 1
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: item_pickup
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: ccde4adeaf6df5c4eaab95dc46a3d702, type: 3}
     volume: 0.7
     pitchVariance: 0
     minInterval: 0.2
     maxSimultaneous: 2
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: low_health_beat
     clips: []
     volume: 0.8
@@ -1988,23 +2063,25 @@ MonoBehaviour:
     minInterval: 0.2
     maxSimultaneous: 1
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: ui_click
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: dbab4ea1ac6aaa24dad5e531d2365a32, type: 3}
     volume: 0.6
     pitchVariance: 0
     minInterval: 0.2
     maxSimultaneous: 1
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: ui_purchase
-    clips: []
+    clips:
+    - {fileID: 8300000, guid: beb3e42ef923adf4cbd7432e571c886c, type: 3}
     volume: 0.8
     pitchVariance: 0
     minInterval: 0.2
     maxSimultaneous: 2
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: ui_denied
     clips: []
     volume: 0.7
@@ -2012,7 +2089,7 @@ MonoBehaviour:
     minInterval: 0.2
     maxSimultaneous: 2
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: ui_pause
     clips: []
     volume: 0.6
@@ -2020,65 +2097,9 @@ MonoBehaviour:
     minInterval: 0.2
     maxSimultaneous: 1
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   warnOnMissingId: 1
---- !u!1001 &1708042012
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 242600636246400827, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
-      propertyPath: m_Name
-      value: RegistryBoss
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6971347237331595791, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 77cde3af3ad4b10468ae4532a04081df, type: 3}
+  logEveryPlay: 0
 --- !u!1 &1757836972
 GameObject:
   m_ObjectHideFlags: 0
@@ -2665,4 +2686,4 @@ SceneRoots:
   - {fileID: 1674654292}
   - {fileID: 1057614633}
   - {fileID: 1262727517}
-  - {fileID: 1708042012}
+  - {fileID: 1378211096}

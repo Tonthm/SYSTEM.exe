@@ -167,6 +167,7 @@ public class PlayerController : MonoBehaviour
         dashCooldownTimer = EffectiveDashCooldown;
         dashInvincible = invincibleDuringDash;
 
+        AudioManager.Play(AudioIds.PlayerDash);
         SetDashVisual(true);
         RefreshPassThrough();
 

@@ -206,6 +206,8 @@ public class CentipedeSegment : MonoBehaviour
         if (fireTimer > 0f) return;
         fireTimer = fireCooldown;
 
+        AudioManager.Play(AudioIds.BossShootRam);
+
         Vector2 forward = transform.right;                       // แนวลำตัว
         Vector2 side = new Vector2(-forward.y, forward.x);       // ตั้งฉาก
 

@@ -118,6 +118,7 @@ public class SectorExitTrigger : MonoBehaviour
         }
 
         used = true;
+        AudioManager.Play(AudioIds.SectorExit);
         string sceneName = SceneManager.GetActiveScene().name;
         Debug.Log($"[Sector Exit] Sector cleared: {sceneName}");
         GameManager.Instance?.OnSectorCleared(sceneName);

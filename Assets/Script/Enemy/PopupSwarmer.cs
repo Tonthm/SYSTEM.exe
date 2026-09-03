@@ -145,6 +145,8 @@ public class PopupSwarmer : EnemyAIBase
     {
         if (splitPrefab == null || generation >= maxGeneration || splitCount <= 0) return;
 
+        AudioManager.Play(AudioIds.SwarmerSplit);
+
         for (int i = 0; i < splitCount; i++)
         {
             Vector2 offset = Random.insideUnitCircle * splitSpreadRadius;

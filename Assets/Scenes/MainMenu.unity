@@ -598,6 +598,7 @@ RectTransform:
   - {fileID: 1784129267}
   - {fileID: 1036573968}
   - {fileID: 1802969821}
+  - {fileID: 977148032}
   - {fileID: 2055893853}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -606,143 +607,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!1 &400044606
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 400044607}
-  - component: {fileID: 400044609}
-  - component: {fileID: 400044608}
-  m_Layer: 0
-  m_Name: Text (TMP)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &400044607
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400044606}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1802969821}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &400044608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400044606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-  m_text: 
-  m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_fontSharedMaterials: []
-  m_fontMaterial: {fileID: 0}
-  m_fontMaterials: []
-  m_fontColor32:
-    serializedVersion: 2
-    rgba: 4281479730
-  m_fontColor: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
-  m_enableVertexGradient: 0
-  m_colorMode: 3
-  m_fontColorGradient:
-    topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
-  m_fontColorGradientPreset: {fileID: 0}
-  m_spriteAsset: {fileID: 0}
-  m_tintAllSprites: 0
-  m_StyleSheet: {fileID: 0}
-  m_TextStyleHashCode: -1183493901
-  m_overrideHtmlColors: 0
-  m_faceColor:
-    serializedVersion: 2
-    rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
-  m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
-  m_textAlignment: 65535
-  m_characterSpacing: 0
-  m_characterHorizontalScale: 1
-  m_wordSpacing: 0
-  m_lineSpacing: 0
-  m_lineSpacingMax: 0
-  m_paragraphSpacing: 0
-  m_charWidthMaxAdj: 0
-  m_TextWrappingMode: 1
-  m_wordWrappingRatios: 0.4
-  m_overflowMode: 0
-  m_linkedTextComponent: {fileID: 0}
-  parentLinkedComponent: {fileID: 0}
-  m_enableKerning: 0
-  m_ActiveFontFeatures: 6e72656b
-  m_enableExtraPadding: 0
-  checkPaddingRequired: 0
-  m_isRichText: 1
-  m_EmojiFallbackSupport: 1
-  m_parseCtrlCharacters: 1
-  m_isOrthographic: 1
-  m_isCullingEnabled: 0
-  m_horizontalMapping: 0
-  m_verticalMapping: 0
-  m_uvLineOffset: 0
-  m_geometrySortingOrder: 0
-  m_IsTextObjectScaleStatic: 0
-  m_VertexBufferAutoSizeReduction: 0
-  m_useMaxVisibleDescender: 1
-  m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
-  m_isUsingLegacyAnimationComponent: 0
-  m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_baseMaterial: {fileID: 0}
-  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!222 &400044609
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 400044606}
-  m_CullTransparentMesh: 1
 --- !u!1 &576765585
 GameObject:
   m_ObjectHideFlags: 0
@@ -1358,6 +1222,151 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
   m_BlendShapeWeights: []
+--- !u!1 &977148031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 977148032}
+  - component: {fileID: 977148036}
+  - component: {fileID: 977148035}
+  - component: {fileID: 977148034}
+  - component: {fileID: 977148033}
+  m_Layer: 0
+  m_Name: reset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &977148032
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977148031}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 391648156}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 936.8, y: -480.5}
+  m_SizeDelta: {x: 30, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &977148033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977148031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc96d619bfb11b243b0657da8f9c8611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResetProgressButton
+  button: {fileID: 977148034}
+  label: {fileID: 0}
+  idleLabel: RESET ALL DATA
+  confirmLabel: ARE YOU SURE?
+  doneLabel: DATA WIPED
+  confirmTimeout: 3
+  idleColor: {r: 1, g: 1, b: 1, a: 1}
+  confirmColor: {r: 1, g: 0.35, b: 0.35, a: 1}
+  resetSectorProgress: 1
+  resetSkills: 1
+  resetXP: 1
+  resetLeaderboard: 1
+--- !u!114 &977148034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977148031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0.1
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 977148035}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &977148035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977148031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &977148036
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977148031}
+  m_CullTransparentMesh: 1
 --- !u!1 &1036573967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1436,7 +1445,7 @@ MonoBehaviour:
     minInterval: 0
     maxSimultaneous: 0
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: music_gameplay
     clips: []
     volume: 0
@@ -1444,8 +1453,309 @@ MonoBehaviour:
     minInterval: 0
     maxSimultaneous: 0
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
+  - id: music_boss_firewall
+    clips: []
+    volume: 0
+    pitchVariance: 0
+    minInterval: 0
+    maxSimultaneous: 0
+    lastPlayTime: 0
+    activeUntil: []
+  - id: music_boss_ram
+    clips: []
+    volume: 0
+    pitchVariance: 0
+    minInterval: 0
+    maxSimultaneous: 0
+    lastPlayTime: 0
+    activeUntil: []
+  - id: music_boss_registry
+    clips: []
+    volume: 0
+    pitchVariance: 0
+    minInterval: 0
+    maxSimultaneous: 0
+    lastPlayTime: 0
+    activeUntil: []
+  - id: music_victory
+    clips: []
+    volume: 0
+    pitchVariance: 0
+    minInterval: 0
+    maxSimultaneous: 0
+    lastPlayTime: 0
+    activeUntil: []
+  - id: player_shoot
+    clips:
+    - {fileID: 8300000, guid: 736c54e46f4f7694494858879ae84348, type: 3}
+    volume: 0.35
+    pitchVariance: 0.1
+    minInterval: 0.05
+    maxSimultaneous: 3
+    lastPlayTime: 0
+    activeUntil: []
+  - id: player_dash
+    clips:
+    - {fileID: 8300000, guid: 57a316bd37d482844b215de78461b887, type: 3}
+    volume: 0.7
+    pitchVariance: 0.05
+    minInterval: 0.1
+    maxSimultaneous: 2
+    lastPlayTime: 0
+    activeUntil: []
+  - id: player_hit
+    clips:
+    - {fileID: 8300000, guid: e3f3bf7fc3c2ea046907484baa9ad09f, type: 3}
+    volume: 0.9
+    pitchVariance: 0.08
+    minInterval: 0.15
+    maxSimultaneous: 2
+    lastPlayTime: 0
+    activeUntil: []
+  - id: player_death
+    clips:
+    - {fileID: 8300000, guid: 6a305de443eef434cb7c80998bd330c0, type: 3}
+    volume: 1
+    pitchVariance: 0
+    minInterval: 0.5
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeUntil: []
+  - id: player_reborn
+    clips:
+    - {fileID: 8300000, guid: 513e2369c35d284448d874b362e1ce7d, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    minInterval: 0.5
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeUntil: []
+  - id: bullet_hit_enemy
+    clips:
+    - {fileID: 8300000, guid: 4cd736abd2548ad46abede73e49b64c9, type: 3}
+    volume: 0.4
+    pitchVariance: 0.12
+    minInterval: 0.04
+    maxSimultaneous: 4
+    lastPlayTime: 0
+    activeUntil: []
+  - id: enemy_death
+    clips:
+    - {fileID: 8300000, guid: 4c30af57204771a49b44e6c23b11d549, type: 3}
+    volume: 0.6
+    pitchVariance: 0.1
+    minInterval: 0.05
+    maxSimultaneous: 5
+    lastPlayTime: 0
+    activeUntil: []
+  - id: enemy_spawn
+    clips:
+    - {fileID: 8300000, guid: 72c2480900adb8e4eb8dbbebb48a7e1c, type: 3}
+    volume: 0.5
+    pitchVariance: 0.08
+    minInterval: 0.08
+    maxSimultaneous: 4
+    lastPlayTime: 0
+    activeUntil: []
+  - id: chaser_lunge
+    clips: []
+    volume: 0.7
+    pitchVariance: 0.06
+    minInterval: 0.1
+    maxSimultaneous: 3
+    lastPlayTime: 0
+    activeUntil: []
+  - id: swarmer_split
+    clips: []
+    volume: 0.6
+    pitchVariance: 0.1
+    minInterval: 0.08
+    maxSimultaneous: 3
+    lastPlayTime: 0
+    activeUntil: []
+  - id: turret_charge
+    clips: []
+    volume: 0.6
+    pitchVariance: 0.05
+    minInterval: 0.15
+    maxSimultaneous: 3
+    lastPlayTime: 0
+    activeUntil: []
+  - id: boss_warning
+    clips: []
+    volume: 1
+    pitchVariance: 0
+    minInterval: 1
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeUntil: []
+  - id: boss_appear
+    clips:
+    - {fileID: 8300000, guid: d13669e6fbce1554ab524125677ddac4, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    minInterval: 1
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeUntil: []
+  - id: boss_death
+    clips:
+    - {fileID: 8300000, guid: b523b0897731f704cad038d3eded7b4a, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    minInterval: 1
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeUntil: []
+  - id: boss_shoot_firewall
+    clips:
+    - {fileID: 8300000, guid: c62118a663217a0419c23b4dcb40a57b, type: 3}
+    volume: 0.5
+    pitchVariance: 0.05
+    minInterval: 1
+    maxSimultaneous: 2
+    lastPlayTime: 0
+    activeUntil: []
+  - id: boss_shoot_ram
+    clips:
+    - {fileID: 8300000, guid: 76c1199bc7ce61e4c8fdbad628c30943, type: 3}
+    volume: 0.3
+    pitchVariance: 0.1
+    minInterval: 0.12
+    maxSimultaneous: 3
+    lastPlayTime: 0
+    activeUntil: []
+  - id: boss_shoot_registry
+    clips:
+    - {fileID: 8300000, guid: c74d5a83ff3744a408c2edeb941b62b5, type: 3}
+    volume: 0.6
+    pitchVariance: 0.05
+    minInterval: 0
+    maxSimultaneous: 0
+    lastPlayTime: 0
+    activeUntil: []
+  - id: laser_charge
+    clips: []
+    volume: 0.7
+    pitchVariance: 0.03
+    minInterval: 0.15
+    maxSimultaneous: 4
+    lastPlayTime: 0
+    activeUntil: []
+  - id: wave_start
+    clips:
+    - {fileID: 0}
+    volume: 0.8
+    pitchVariance: 0
+    minInterval: 1
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeUntil: []
+  - id: wave_cleared
+    clips: []
+    volume: 0.8
+    pitchVariance: 0
+    minInterval: 1
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeUntil: []
+  - id: sector_exit
+    clips:
+    - {fileID: 8300000, guid: 07ae0e075644bae4e82fb80447bee093, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    minInterval: 1
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeUntil: []
+  - id: force_format
+    clips: []
+    volume: 1
+    pitchVariance: 0
+    minInterval: 1
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeUntil: []
+  - id: fragment_drop
+    clips:
+    - {fileID: 8300000, guid: 20707832355f4bc46a5166f90478c57e, type: 3}
+    volume: 0.8
+    pitchVariance: 0
+    minInterval: 0.5
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeUntil: []
+  - id: fragment_pickup
+    clips:
+    - {fileID: 8300000, guid: b05a364eb0b5eb343af4fb2394cda1c4, type: 3}
+    volume: 0.9
+    pitchVariance: 0
+    minInterval: 0.3
+    maxSimultaneous: 2
+    lastPlayTime: 0
+    activeUntil: []
+  - id: fragment_expire
+    clips: []
+    volume: 0.9
+    pitchVariance: 0
+    minInterval: 0.5
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeUntil: []
+  - id: item_pickup
+    clips:
+    - {fileID: 8300000, guid: ccde4adeaf6df5c4eaab95dc46a3d702, type: 3}
+    volume: 0.7
+    pitchVariance: 0
+    minInterval: 0.2
+    maxSimultaneous: 2
+    lastPlayTime: 0
+    activeUntil: []
+  - id: low_health_beat
+    clips: []
+    volume: 0.8
+    pitchVariance: 0
+    minInterval: 0.2
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeUntil: []
+  - id: ui_click
+    clips:
+    - {fileID: 8300000, guid: dbab4ea1ac6aaa24dad5e531d2365a32, type: 3}
+    volume: 0.6
+    pitchVariance: 0
+    minInterval: 0.2
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeUntil: []
+  - id: ui_purchase
+    clips:
+    - {fileID: 8300000, guid: beb3e42ef923adf4cbd7432e571c886c, type: 3}
+    volume: 0.8
+    pitchVariance: 0
+    minInterval: 0.2
+    maxSimultaneous: 2
+    lastPlayTime: 0
+    activeUntil: []
+  - id: ui_denied
+    clips: []
+    volume: 0.7
+    pitchVariance: 0
+    minInterval: 0.2
+    maxSimultaneous: 2
+    lastPlayTime: 0
+    activeUntil: []
+  - id: ui_pause
+    clips: []
+    volume: 0.6
+    pitchVariance: 0
+    minInterval: 0.2
+    maxSimultaneous: 1
+    lastPlayTime: 0
+    activeUntil: []
   warnOnMissingId: 1
+  logEveryPlay: 0
 --- !u!4 &1068362565
 Transform:
   m_ObjectHideFlags: 0
@@ -1942,7 +2252,7 @@ GameObject:
   - component: {fileID: 1802969823}
   - component: {fileID: 1802969822}
   m_Layer: 0
-  m_Name: Button
+  m_Name: reset
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1959,8 +2269,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 400044607}
+  m_Children: []
   m_Father: {fileID: 391648156}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2173,7 +2482,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -201.38074, w: -164.31516}
+  m_margin: {x: 0, y: 0, z: -472.14545, w: -164.31516}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

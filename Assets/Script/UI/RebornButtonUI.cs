@@ -47,6 +47,7 @@ public class RebornButtonUI : MonoBehaviour
 
     public void Reborn()
     {
+        AudioManager.Play(AudioIds.PlayerReborn);
         GameManager.Instance?.RequestReborn();
     }
 }

@@ -83,6 +83,7 @@ public class PauseMenuUI : MonoBehaviour
             && (GameManager.Instance.IsRespawning || GameManager.Instance.IsWaitingForReborn)) return;
 
         IsOpen = true;
+        AudioManager.Play(AudioIds.UIPause);
         if (pauseRoot != null) pauseRoot.SetActive(true);
         CloseSubPanels();
 

@@ -71,6 +71,8 @@ public class FragmentInheritanceManager : MonoBehaviour
             ActiveFragment = fragment;
         }
 
+        AudioManager.Play(AudioIds.FragmentDrop);
+
         Debug.Log($"[Fragment Inheritance] Dropped fragment at {position} carrying {payload.Describe()}, expires in {lifetime}s");
     }
 }

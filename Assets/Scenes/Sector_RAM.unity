@@ -435,6 +435,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3313011613531689714, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
+      propertyPath: sectorName
+      value: RAM
+      objectReference: {fileID: 0}
     - target: {fileID: 4984844676537692611, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -803,6 +807,8 @@ MonoBehaviour:
   bonusXpPerSecond: 1
   maxBonusXpPerWave: 60
   overclockSkillMultiplier: 2
+  healOnWaveClear: 50
+  healOnlyIfClearedEarly: 0
   stalePenaltyMultiplier: 0.5
   stackStalePenalty: 0
   enemyHealthMultiplier: 1.6
@@ -1300,7 +1306,7 @@ MonoBehaviour:
     minInterval: 0
     maxSimultaneous: 0
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   - id: music_gameplay
     clips: []
     volume: 0
@@ -1308,8 +1314,9 @@ MonoBehaviour:
     minInterval: 0
     maxSimultaneous: 0
     lastPlayTime: 0
-    activeCount: 0
+    activeUntil: []
   warnOnMissingId: 1
+  logEveryPlay: 0
 --- !u!1001 &1276990503
 PrefabInstance:
   m_ObjectHideFlags: 0

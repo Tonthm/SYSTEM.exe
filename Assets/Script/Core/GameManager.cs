@@ -173,11 +173,24 @@ public class GameManager : MonoBehaviour
         // ผ่านด่านสุดท้ายแล้ว = จบเกม (ไม่ต้องมีบอส NULL.exe แยกด่าน)
         if (SectorPoolManager.Instance != null && SectorPoolManager.Instance.IsNextSectorVictory())
         {
+            Debug.Log("[GameManager] ผ่านครบทุกด่านแล้ว → จบเกม");
             CompleteGame();
             return;
         }
 
+        SectorPoolManager.Instance?.LogProgress();   // ดู Console ได้ว่าทำไมยังไม่จบเกม
+
         string next = SectorPoolManager.Instance?.GetNextSector();
+
+        // ไม่มีด่านถัดไป = ถือว่าจบเกม กันค้างอยู่ในด่านเดิมแบบไม่มีอะไรเกิดขึ้น
+        if (string.IsNullOrEmpty(next))
+        {
+            Debug.LogWarning("[GameManager] ไม่มีด่านถัดไป → จบเกมแทน");
+            CompleteGame();
+            return;
+        }
+
+        Debug.Log($"[GameManager] ผ่านด่าน {currentSceneName} → โหลดด่านถัดไป: {next}");
         SectorPoolManager.Instance?.LoadSector(next);
     }
 

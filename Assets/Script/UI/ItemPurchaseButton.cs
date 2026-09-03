@@ -70,7 +70,11 @@ public class ItemPurchaseButton : MonoBehaviour
 
     public void TryPurchase()
     {
-        if (SoldOut) return;
+        if (SoldOut)
+        {
+            AudioManager.Play(AudioIds.UIDenied);
+            return;
+        }
 
         if (XPManager.Instance == null || RunInventory.Instance == null)
         {
@@ -81,6 +85,7 @@ public class ItemPurchaseButton : MonoBehaviour
         int price = CurrentCost;
         if (!XPManager.Instance.SpendPermanentXP(price))
         {
+            AudioManager.Play(AudioIds.UIDenied);
             Debug.Log($"[Item Shop] XP ไม่พอ ({XPManager.Instance.PermanentXP}/{price})");
             return;
         }
@@ -89,11 +94,13 @@ public class ItemPurchaseButton : MonoBehaviour
         {
             // กระเป๋าเต็ม — คืน XP ให้ ไม่งั้นผู้เล่นเสียของฟรี
             XPManager.Instance.AddXP(price);
+            AudioManager.Play(AudioIds.UIDenied);
             Debug.Log("[Item Shop] กระเป๋าเต็ม คืน XP แล้ว");
             return;
         }
 
         purchases++;
+        AudioManager.Play(AudioIds.UIPurchase);
         if (purchaseEffectPrefab != null) Instantiate(purchaseEffectPrefab, transform.position, Quaternion.identity, transform);
 
         OnAnyItemPurchased?.Invoke();

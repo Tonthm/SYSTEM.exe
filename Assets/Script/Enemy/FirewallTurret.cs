@@ -37,6 +37,10 @@ public class FirewallTurret : EnemyAIBase
     [SerializeField] private float restDuration = 1.8f;
     [Tooltip("หยุดหมุนระหว่างยิง — ทำให้ผู้เล่นวิ่งอ้อมหนีลำกระสุนได้")]
     [SerializeField] private bool lockRotationWhileFiring = true;
+    [Tooltip("ยิงตรงไปตามลำกล้อง ไม่เล็งตามผู้เล่นทีละนัด (แนะนำเปิด — ไม่งั้นกระสุนตามตัวหลบไม่ได้)")]
+    [SerializeField] private bool fireStraightAlongBarrel = true;
+    [Tooltip("ระยะเป้าหมายสมมติที่ปลายลำกล้อง")]
+    [SerializeField] private float straightAimDistance = 50f;
 
     [Header("Charge Feedback")]
     [SerializeField] private SpriteRenderer chargeIndicator;
@@ -51,6 +55,7 @@ public class FirewallTurret : EnemyAIBase
 
     private enum State { Idle, Charge, Burst, Rest }
     private State state = State.Idle;
+    private Vector2 burstAimTarget;
     private float stateTimer;
     private Color baseIndicatorColor;
 
@@ -106,10 +111,37 @@ public class FirewallTurret : EnemyAIBase
 
             case State.Burst:
                 // สั่งยิงทุกเฟรม — EnemyBulletEmitter คุมจังหวะห่างด้วย Fire Cooldown ของมันเอง
-                bulletEmitter?.TryFireAt(player.position);
+                bulletEmitter?.TryFireAt(GetAimTarget());
                 if (stateTimer <= 0f) EnterRest();
                 break;
         }
+    }
+
+    /// <summary>
+    /// เป้าหมายที่ส่งให้ emitter
+    ///
+    /// ล็อกทิศไว้ตั้งแต่เริ่ม burst แล้วใช้จุดเดิมทุกนัด — กระสุนจึงพุ่งเป็นเส้นตรงคงที่
+    /// ไม่เล็งตามผู้เล่นทีละนัด (ถ้าเล็งตาม ผู้เล่นจะหลบไม่ได้เลยเพราะกระสุนวิ่งเข้าหาตัวตลอด)
+    /// </summary>
+    private Vector2 GetAimTarget()
+    {
+        if (!fireStraightAlongBarrel) return player.position;
+        return burstAimTarget;
+    }
+
+    /// <summary>คำนวณจุดเป้าหมายคงที่จากทิศลำกล้องตอนนี้</summary>
+    private Vector2 CalculateLockedAim()
+    {
+        Transform barrel = rotatingPart != null ? rotatingPart : transform;
+
+        // ไม่มี rotatingPart = ลำกล้องไม่หมุนตามผู้เล่น เลยใช้ทิศไปหาผู้เล่นตอนล็อกแทน
+        if (rotatingPart == null && player != null)
+        {
+            Vector2 dir = ((Vector2)player.position - (Vector2)barrel.position).normalized;
+            return (Vector2)barrel.position + dir * straightAimDistance;
+        }
+
+        return (Vector2)barrel.position + (Vector2)barrel.right * straightAimDistance;
     }
 
     private void EnterIdle()
@@ -129,6 +161,7 @@ public class FirewallTurret : EnemyAIBase
 
     private void EnterCharge()
     {
+        AudioManager.Play(AudioIds.TurretCharge);
         state = State.Charge;
         stateTimer = chargeDuration;
 
@@ -142,6 +175,9 @@ public class FirewallTurret : EnemyAIBase
     {
         state = State.Burst;
         stateTimer = burstDuration;
+
+        // ล็อกทิศตรงนี้ — ทุกนัดใน burst นี้จะพุ่งไปทางเดียวกันหมด
+        burstAimTarget = CalculateLockedAim();
         ResetIndicator();
 
         if (shield != null && dropShieldWhileFiring) shield.IsActive = false;

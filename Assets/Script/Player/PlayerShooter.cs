@@ -24,6 +24,15 @@ public class PlayerShooter : MonoBehaviour
     [SerializeField] private int bulletsPerShot = 1;
     [SerializeField] private float spreadAngle = 0f; // องศารวมของการกระจาย
 
+    [Header("Aim")]
+    [Tooltip("Transform ที่จะหมุนตามเมาส์ — ใส่ child \"AimPivot\" ที่มี FirePoint อยู่ข้างใน\n" +
+             "เว้นว่าง = หมุนตัว Player ทั้งตัว (sprite จะหมุนตามด้วย)")]
+    [SerializeField] private Transform aimPivot;
+    [Tooltip("พลิก sprite ซ้าย-ขวาตามทิศเล็ง แทนการหมุน (เหมาะกับตัวละครที่ต้องตั้งตรง)")]
+    [SerializeField] private bool flipSpriteByAim = true;
+    [Tooltip("SpriteRenderer ที่จะพลิก — เว้นว่างจะหาใน child เอง")]
+    [SerializeField] private SpriteRenderer[] spritesToFlip;
+
     [Header("Refs")]
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject bulletPrefab;
@@ -43,6 +52,15 @@ public class PlayerShooter : MonoBehaviour
     private void Awake()
     {
         if (mainCamera == null) mainCamera = Camera.main;
+
+        // เว้นว่าง = หมุนตัวเองทั้งตัวเหมือนเดิม
+        if (aimPivot == null) aimPivot = transform;
+
+        if (flipSpriteByAim && (spritesToFlip == null || spritesToFlip.Length == 0))
+        {
+            spritesToFlip = GetComponentsInChildren<SpriteRenderer>();
+        }
+
         RecalculateStats();
     }
 
@@ -104,7 +122,22 @@ public class PlayerShooter : MonoBehaviour
         Vector2 direction = (mouseWorldPos - firePoint.position);
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        // หมุนแค่ Aim Pivot — sprite ที่อยู่นอก pivot จะไม่หมุนตาม
+        aimPivot.rotation = Quaternion.Euler(0f, 0f, angle);
+
+        if (flipSpriteByAim) FlipSprites(direction.x);
+    }
+
+    /// <summary>พลิก sprite ตามทิศเล็ง — ตัวละครยังตั้งตรง แค่หันซ้าย/ขวา</summary>
+    private void FlipSprites(float aimX)
+    {
+        if (spritesToFlip == null || Mathf.Abs(aimX) < 0.01f) return;
+
+        bool faceLeft = aimX < 0f;
+        foreach (var sr in spritesToFlip)
+        {
+            if (sr != null) sr.flipX = faceLeft;
+        }
     }
 
     private void Shoot()
@@ -131,6 +164,7 @@ public class PlayerShooter : MonoBehaviour
 
     private void SpawnBullet(float angleDegrees)
     {
+        AudioManager.Play(AudioIds.PlayerShoot);
         Quaternion rotation = Quaternion.Euler(0f, 0f, angleDegrees);
         GameObject bulletObj = Instantiate(bulletPrefab, firePoint.position, rotation);
 

@@ -53,6 +53,7 @@ public class ItemPickup : MonoBehaviour
 
         if (!RunInventory.Instance.AddItem(item)) return;
 
+        AudioManager.Play(AudioIds.ItemPickup);
         if (pickupEffectPrefab != null) Instantiate(pickupEffectPrefab, transform.position, Quaternion.identity);
         Destroy(gameObject);
     }

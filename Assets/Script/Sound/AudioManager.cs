@@ -45,7 +45,19 @@ public class AudioManager : MonoBehaviour
         public int maxSimultaneous = 4;
 
         [HideInInspector] public float lastPlayTime = -99f;
-        [HideInInspector] public int activeCount;
+
+        /// <summary>เวลาที่เสียงแต่ละตัวจะเล่นจบ — ใช้นับว่ามีกี่เสียงดังอยู่ตอนนี้</summary>
+        [HideInInspector] public List<float> activeUntil = new List<float>();
+
+        /// <summary>ตัดตัวที่เล่นจบแล้วออก แล้วคืนจำนวนที่ยังดังอยู่จริง</summary>
+        public int PruneActive(float now)
+        {
+            for (int i = activeUntil.Count - 1; i >= 0; i--)
+            {
+                if (activeUntil[i] <= now) activeUntil.RemoveAt(i);
+            }
+            return activeUntil.Count;
+        }
     }
 
     [Header("Mixer (ไม่บังคับ)")]
@@ -66,6 +78,8 @@ public class AudioManager : MonoBehaviour
     [Header("Debug")]
     [Tooltip("เตือนใน Console เมื่อเรียก id ที่ยังไม่ได้ใส่คลิป")]
     [SerializeField] private bool warnOnMissingId = true;
+    [Tooltip("พิมพ์ทุกครั้งที่มีการเล่นเสียง + บอกเหตุผลตอนที่เสียงถูกข้าม (เปิดเฉพาะตอนหาปัญหา)")]
+    [SerializeField] private bool logEveryPlay = false;
 
     private readonly Dictionary<string, SoundEntry> lookup = new Dictionary<string, SoundEntry>();
     private AudioSource[] sfxSources;
@@ -150,18 +164,38 @@ public class AudioManager : MonoBehaviour
     {
         if (!lookup.TryGetValue(id, out SoundEntry entry))
         {
-            if (warnOnMissingId) Debug.LogWarning($"[Audio] ไม่พบเสียง id = {id} (ยังไม่ได้ใส่ใน AudioManager)");
+            if (warnOnMissingId) Debug.LogWarning($"[Audio] ไม่พบเสียง id = '{id}' — ยังไม่ได้เพิ่มใน list Sounds");
             return;
         }
 
-        if (entry.clips == null || entry.clips.Length == 0) return;
+        if (entry.clips == null || entry.clips.Length == 0)
+        {
+            if (warnOnMissingId) Debug.LogWarning($"[Audio] '{id}' มีในลิสต์แล้วแต่ยังไม่ได้ลาก AudioClip เข้าช่อง Clips");
+            return;
+        }
+
+        float now = Time.unscaledTime;
 
         // กันเสียงถี่เกินจนแตก
-        if (Time.unscaledTime - entry.lastPlayTime < entry.minInterval) return;
-        if (entry.maxSimultaneous > 0 && entry.activeCount >= entry.maxSimultaneous) return;
+        if (now - entry.lastPlayTime < entry.minInterval)
+        {
+            if (logEveryPlay) Debug.Log($"[Audio] ข้าม '{id}' — ยังไม่พ้น Min Interval ({entry.minInterval}s)");
+            return;
+        }
+
+        int active = entry.PruneActive(now);
+        if (entry.maxSimultaneous > 0 && active >= entry.maxSimultaneous)
+        {
+            if (logEveryPlay) Debug.Log($"[Audio] ข้าม '{id}' — ดังพร้อมกันครบ {entry.maxSimultaneous} เสียงแล้ว");
+            return;
+        }
 
         AudioClip clip = entry.clips[Random.Range(0, entry.clips.Length)];
-        if (clip == null) return;
+        if (clip == null)
+        {
+            if (warnOnMissingId) Debug.LogWarning($"[Audio] '{id}' มีช่อง Clips ว่างอยู่ (Element ที่ยังไม่ได้ลากไฟล์)");
+            return;
+        }
 
         AudioSource src = GetFreeSource();
         if (src == null) return;
@@ -171,15 +205,81 @@ public class AudioManager : MonoBehaviour
         src.pitch = 1f + Random.Range(-entry.pitchVariance, entry.pitchVariance);
         src.Play();
 
-        entry.lastPlayTime = Time.unscaledTime;
-        entry.activeCount++;
-        StartCoroutine(ReleaseAfter(entry, clip.length / Mathf.Max(0.01f, src.pitch)));
+        entry.lastPlayTime = now;
+        entry.activeUntil.Add(now + clip.length / Mathf.Max(0.01f, src.pitch));
+
+        if (logEveryPlay) Debug.Log($"[Audio] เล่น '{id}' (vol {src.volume:0.00})");
     }
 
-    private IEnumerator ReleaseAfter(SoundEntry entry, float duration)
+    // ================= Diagnostics =================
+
+    /// <summary>คลิกขวาที่ component → เช็คว่า id ไหนยังไม่ได้ใส่คลิป</summary>
+    [ContextMenu("Check Missing Clips")]
+    public void CheckMissingClips()
     {
-        yield return new WaitForSecondsRealtime(duration);
-        entry.activeCount = Mathf.Max(0, entry.activeCount - 1);
+        int missing = 0;
+
+        foreach (var entry in sounds)
+        {
+            if (entry == null) continue;
+
+            if (string.IsNullOrEmpty(entry.id))
+            {
+                Debug.LogWarning("[Audio] มีแถวที่ยังไม่ได้กรอก Id");
+                missing++;
+            }
+            else if (entry.clips == null || entry.clips.Length == 0)
+            {
+                Debug.LogWarning($"[Audio] '{entry.id}' ยังไม่มีคลิป");
+                missing++;
+            }
+            else
+            {
+                for (int i = 0; i < entry.clips.Length; i++)
+                {
+                    if (entry.clips[i] == null)
+                    {
+                        Debug.LogWarning($"[Audio] '{entry.id}' ช่อง Clips element {i} ว่างอยู่");
+                        missing++;
+                    }
+                }
+            }
+        }
+
+        Debug.Log(missing == 0
+            ? $"[Audio] ครบทุกเสียง ({sounds.Count} id)"
+            : $"[Audio] มีปัญหา {missing} จุด — ดูรายการด้านบน");
+    }
+
+    /// <summary>คลิกขวาที่ component ตอน Play อยู่ → ไล่เล่นทุกเสียงทีละอัน</summary>
+    [ContextMenu("Test All Sounds")]
+    public void TestAllSounds()
+    {
+        if (!Application.isPlaying)
+        {
+            Debug.LogWarning("[Audio] ต้องกด Play ก่อนถึงจะทดสอบเสียงได้");
+            return;
+        }
+        StartCoroutine(TestAllRoutine());
+    }
+
+    private IEnumerator TestAllRoutine()
+    {
+        foreach (var entry in sounds)
+        {
+            if (entry == null || string.IsNullOrEmpty(entry.id)) continue;
+            if (entry.id.StartsWith("music_")) continue;   // เพลงข้าม ทดสอบแยก
+
+            Debug.Log($"[Audio] ทดสอบ: {entry.id}");
+
+            entry.lastPlayTime = -99f;   // ข้าม Min Interval ตอนทดสอบ
+            entry.activeUntil.Clear();
+            PlaySFX(entry.id);
+
+            yield return new WaitForSecondsRealtime(0.7f);
+        }
+
+        Debug.Log("[Audio] ทดสอบครบทุกเสียงแล้ว");
     }
 
     private AudioSource GetFreeSource()
@@ -190,6 +290,10 @@ public class AudioManager : MonoBehaviour
         }
 
         // ทุกช่องไม่ว่าง — ทับช่องแรก (เสียงเก่าสุดหายไป ดีกว่าเสียงใหม่ไม่ดัง)
+        if (warnOnMissingId)
+        {
+            Debug.LogWarning($"[Audio] AudioSource เต็มทั้ง {sfxSources.Length} ช่อง — เพิ่ม Sfx Source Count");
+        }
         return sfxSources.Length > 0 ? sfxSources[0] : null;
     }
 

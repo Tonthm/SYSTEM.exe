@@ -161,6 +161,8 @@ public class FirewallBoss : MonoBehaviour
 
         if (fireWallSegmentPrefab == null) yield break;
 
+        AudioManager.Play(AudioIds.BossShootFirewall);
+
         for (int i = 0; i < nozzles.Length; i++)
         {
             if (gaps.Contains(i) || nozzles[i] == null) continue;

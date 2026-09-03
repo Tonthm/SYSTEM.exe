@@ -65,6 +65,8 @@ public class LaserBeam : MonoBehaviour
 
         timer = 0f;
         isActive = false;
+
+        AudioManager.Play(AudioIds.LaserCharge);
     }
 
     private void ApplySize(float currentWidth)
@@ -102,6 +104,8 @@ public class LaserBeam : MonoBehaviour
         ApplySize(width);
         if (beamCollider != null) beamCollider.enabled = true;
         if (beamRenderer != null) beamRenderer.color = activeColor;
+
+        AudioManager.Play(AudioIds.BossShootRegistry);
     }
 
     private void OnTriggerEnter2D(Collider2D other) => HandleContact(other);

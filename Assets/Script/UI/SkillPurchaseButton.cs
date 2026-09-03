@@ -70,11 +70,13 @@ public class SkillPurchaseButton : MonoBehaviour
 
         if (SkillTreeManager.Instance.TryUnlock(skillId))
         {
+            AudioManager.Play(AudioIds.UIPurchase);
             if (purchaseEffectPrefab != null) Instantiate(purchaseEffectPrefab, transform.position, Quaternion.identity, transform);
             OnAnySkillPurchased?.Invoke();   // ให้ปุ่มลูกในสายรีเฟรชตาม
         }
         else
         {
+            AudioManager.Play(AudioIds.UIDenied);
             Debug.Log($"[Skill Button] ซื้อไม่ได้: {SkillTreeManager.Instance.GetLockReason(skillId)}");
         }
     }
