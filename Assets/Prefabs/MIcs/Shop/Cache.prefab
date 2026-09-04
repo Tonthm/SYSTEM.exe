@@ -224,7 +224,7 @@ MonoBehaviour:
     bonusBulletsPerShot: 0
     bonusSpreadAngle: 0
     moveSpeedMultiplier: 1.25
-  cost: 100
+  cost: 150
   maxPurchasesPerRun: 1
   costGrowth: 1.5
   button: {fileID: 5008712668532878119}

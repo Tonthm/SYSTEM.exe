@@ -214,7 +214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlapTicketButton
   flapSceneName: Sector_BonusFlap
-  cost: 100
+  cost: 1000
   button: {fileID: 5008712668532878119}
   nameText: {fileID: 4812847196139760877}
   costText: {fileID: 8056566891658615264}
