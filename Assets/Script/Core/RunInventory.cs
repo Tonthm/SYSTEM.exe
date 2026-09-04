@@ -63,8 +63,8 @@ public class RunInventory : MonoBehaviour
     /// <summary>เรียกตอนตาย — ดึงไอเทมทั้งหมดออกไปใส่ Data Fragment แล้วล้างกระเป๋า</summary>
     public List<RunItem> TakeAll()
     {
-        var taken = new List<RunItem>(items);
-        items.Clear();
+        var taken = items.FindAll(i => !i.isPermanent);
+        items.RemoveAll(i => !i.isPermanent);
         OnInventoryChanged?.Invoke();
         return taken;
     }
@@ -84,8 +84,18 @@ public class RunInventory : MonoBehaviour
     }
 
     /// <summary>เรียกตอนเริ่มรอบใหม่ทั้งหมด หรือตอนโดน Force Format</summary>
-    public void ClearRun()
+    public void ClearRun(bool preservePermanent = false)
     {
+        if (preservePermanent)
+        {
+            int before = items.Count;
+            items.RemoveAll(i => !i.isPermanent);
+            if (items.Count == before) return;
+            OnInventoryChanged?.Invoke();
+            Debug.Log("[Run Inventory] ล้างไอเทมของรอบนี้ (เก็บไอเทมถาวรไว้)");
+            return;
+        }
+
         if (items.Count == 0) return;
         items.Clear();
         OnInventoryChanged?.Invoke();

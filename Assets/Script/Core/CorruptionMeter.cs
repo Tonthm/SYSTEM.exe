@@ -107,7 +107,7 @@ public class CorruptionMeter : MonoBehaviour
         AudioManager.Play(AudioIds.ForceFormat);
 
         if (wipeResistanceOnFormat) BulletPatternMemory.Instance?.ResetAll();
-        if (wipeRunInventoryOnFormat) RunInventory.Instance?.ClearRun();
+        if (wipeRunInventoryOnFormat) RunInventory.Instance?.ClearRun(preservePermanent: true);
         if (wipeTempXPOnFormat) XPManager.Instance?.ResetRunTempXP();
 
         SectorPoolManager.Instance?.ResetRunProgress();

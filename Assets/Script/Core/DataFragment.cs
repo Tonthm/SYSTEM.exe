@@ -16,6 +16,11 @@ public class DataFragment : MonoBehaviour
     [SerializeField] private float blinkInterval = 0.15f;
     [SerializeField] private SpriteRenderer spriteRenderer;
 
+    [Header("Magnet (สกิล fragment_beacon)")]
+    [SerializeField] private float magnetRadius = 3f;
+    [SerializeField] private float magnetSpeed = 6f;
+    private Transform player;
+
     private FragmentPayload payload;
     private float lifetime;
     private float timer;
@@ -28,6 +33,9 @@ public class DataFragment : MonoBehaviour
     private void Awake()
     {
         if (spriteRenderer == null) spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+
+        var p = GameObject.FindGameObjectWithTag("Player");
+        if (p != null) player = p.transform;
     }
 
     /// <summary>เวอร์ชันเต็ม — ใช้จาก FragmentInheritanceManager</summary>
@@ -47,6 +55,7 @@ public class DataFragment : MonoBehaviour
     private void Update()
     {
         timer += Time.deltaTime;
+        HandleMagnetPull();
 
         if (spriteRenderer != null && RemainingTime <= blinkWarningTime)
         {
@@ -65,6 +74,17 @@ public class DataFragment : MonoBehaviour
             AudioManager.Play(AudioIds.FragmentExpire);
             Destroy(gameObject);
         }
+    }
+
+    private void HandleMagnetPull()
+    {
+        if (!SkillEffects.IsUnlocked(SkillEffects.FragmentBeacon)) return;
+        if (player == null || !player.gameObject.activeInHierarchy) return;
+
+        float dist = Vector2.Distance(transform.position, player.position);
+        if (dist > magnetRadius) return;
+
+        transform.position = Vector2.MoveTowards(transform.position, player.position, magnetSpeed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D other)

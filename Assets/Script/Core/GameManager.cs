@@ -190,6 +190,15 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        if (FlapTicketState.IsPending && !string.IsNullOrEmpty(FlapTicketState.FlapSceneName))
+        {
+            Debug.Log($"[GameManager] มีตั๋ว Flap ค้างอยู่ — พาไปมินิเกมก่อนไปด่านถัดไป ({next} รอไว้)");
+            FlapBonusContext.PendingNextSector = next;
+            FlapTicketState.ConsumePending();
+            SectorPoolManager.Instance?.LoadSector(FlapTicketState.FlapSceneName);
+            return;
+        }
+
         Debug.Log($"[GameManager] ผ่านด่าน {currentSceneName} → โหลดด่านถัดไป: {next}");
         SectorPoolManager.Instance?.LoadSector(next);
     }

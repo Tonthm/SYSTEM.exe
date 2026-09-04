@@ -61,7 +61,7 @@ public class SkillTreeManager : MonoBehaviour
         new SkillNode {
             id = SkillEffects.FragmentBeacon,
             displayName = "Fragment Beacon",
-            description = "แสดงลูกศรชี้ทิศ Fragment และเวลานับถอยหลังบน HUD",
+            description = "เข้าใกล้ Fragment ในระยะ 3m จะถูกดูดเข้าหาตัวอัตโนมัติ + ลูกศรชี้ทิศ",
             cost = 300,
             requiresSkillId = SkillEffects.FragmentTimerExtend
         },

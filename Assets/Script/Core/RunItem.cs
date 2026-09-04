@@ -19,6 +19,8 @@ public class RunItem
     public string id = "item";
     public string displayName = "Unknown Fragment";
     public RunItemType type = RunItemType.WeaponUpgrade;
+    public Sprite icon;
+    public bool isPermanent = false;
 
     [Header("Weapon Modifiers (ใช้เมื่อ type = WeaponUpgrade)")]
     public float fireRateMultiplier = 1f;
@@ -41,7 +43,9 @@ public class RunItem
             damageMultiplier = damageMultiplier,
             bonusBulletsPerShot = bonusBulletsPerShot,
             bonusSpreadAngle = bonusSpreadAngle,
-            moveSpeedMultiplier = moveSpeedMultiplier
+            moveSpeedMultiplier = moveSpeedMultiplier,
+            icon = icon,
+            isPermanent = isPermanent
         };
     }
 }

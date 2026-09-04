@@ -834,39 +834,39 @@ MonoBehaviour:
   skills:
   - id: dodge_boost
     displayName: Dodge Boost
-    description: "Dash cooldown \xD70.7 (0.80 -> 0.56 \u0E27\u0E34)"
-    cost: 120
+    description: "Dash cooldown \xD70.7 (0.80 -> 0.56s)"
+    cost: 360
     requiresSkillId: 
     unlocked: 0
   - id: overclock_streak
     displayName: Overclock
     description: Fast Wave Clear Bonus XP x2
-    cost: 250
-    requiresSkillId: 
+    cost: 500
+    requiresSkillId: dodge_boost
     unlocked: 0
   - id: fragment_timer_extend
     displayName: Extended Cache
-    description: Fragment duration 30 -> 45 s
-    cost: 150
+    description: Fragment duration 30 -> 45s
+    cost: 300
     requiresSkillId: 
     unlocked: 0
   - id: fragment_beacon
-    displayName: Fragment Beacon
-    description: Direction arrow + Countdown on HUD
-    cost: 300
-    requiresSkillId: 
+    displayName: Magnet
+    description: Magnet for Fargment
+    cost: 400
+    requiresSkillId: fragment_timer_extend
     unlocked: 0
   - id: pattern_analyzer
     displayName: Pattern Analyzer
     description: "Resistance per death \xD72"
-    cost: 300
+    cost: 600
     requiresSkillId: 
     unlocked: 0
   - id: resistance_cap
     displayName: Deep Immunity
     description: Max resistance 50% -> 70%
-    cost: 600
-    requiresSkillId: 
+    cost: 750
+    requiresSkillId: pattern_analyzer
     unlocked: 0
   - id: corruption_shield
     displayName: Corruption Shield
@@ -878,7 +878,7 @@ MonoBehaviour:
     displayName: Registry Cleaner
     description: 'Passing state safe reduces corruption by 1 '
     cost: 550
-    requiresSkillId: 
+    requiresSkillId: corruption_shield
     unlocked: 0
 --- !u!1001 &668595737
 PrefabInstance:

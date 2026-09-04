@@ -39,6 +39,25 @@ public static class LocalLeaderboard
     private const string SaveKey = "Economice_SYSTEMexe_Leaderboard";
     private const int MaxEntries = 5;
 
+    // ── ผลของรอบล่าสุด ──
+    // เก็บลง PlayerPrefs เพราะ VictoryScene เป็นคนละ Scene กับตอนที่จบเกม
+    // ค่าใน RAM จะยังอยู่ก็จริง แต่ถ้ากด Play จาก VictoryScene ตรง ๆ จะได้ไม่พัง
+    private const string KeyLastTime = "Economice_SYSTEMexe_LastRunTime";
+    private const string KeyLastDeaths = "Economice_SYSTEMexe_LastRunDeaths";
+    private const string KeyLastRank = "Economice_SYSTEMexe_LastRunRank";
+
+    public static float LastRunTime => PlayerPrefs.GetFloat(KeyLastTime, 0f);
+    public static int LastRunDeaths => PlayerPrefs.GetInt(KeyLastDeaths, 0);
+    /// <summary>อันดับที่ได้ในรอบล่าสุด (0 = ไม่ติดตาราง)</summary>
+    public static int LastRunRank => PlayerPrefs.GetInt(KeyLastRank, 0);
+
+    public static string FormatTime(float seconds)
+    {
+        int m = Mathf.FloorToInt(seconds / 60f);
+        int sec = Mathf.FloorToInt(seconds % 60f);
+        return $"{m:00}:{sec:00}";
+    }
+
     public static List<Entry> GetEntries()
     {
         string json = PlayerPrefs.GetString(SaveKey, "");
@@ -72,7 +91,15 @@ public static class LocalLeaderboard
         Save(entries);
 
         int rank = entries.FindIndex(e => Mathf.Approximately(e.timeSeconds, timeSeconds) && e.deaths == deaths);
-        return rank >= 0 ? rank + 1 : 0;
+        rank = rank >= 0 ? rank + 1 : 0;
+
+        // เก็บผลรอบนี้ไว้ให้ VictoryScene อ่านหลังโหลด Scene ใหม่
+        PlayerPrefs.SetFloat(KeyLastTime, timeSeconds);
+        PlayerPrefs.SetInt(KeyLastDeaths, deaths);
+        PlayerPrefs.SetInt(KeyLastRank, rank);
+        PlayerPrefs.Save();
+
+        return rank;
     }
 
     public static void Clear()

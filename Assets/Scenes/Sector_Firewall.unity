@@ -836,37 +836,37 @@ MonoBehaviour:
   - id: dodge_boost
     displayName: Dodge Boost
     description: "Dash cooldown \xD70.7 (0.80 -> 0.56s)"
-    cost: 120
+    cost: 360
     requiresSkillId: 
     unlocked: 0
   - id: overclock_streak
     displayName: Overclock
     description: Fast Wave Clear Bonus XP x2
-    cost: 250
+    cost: 500
     requiresSkillId: dodge_boost
     unlocked: 0
   - id: fragment_timer_extend
     displayName: Extended Cache
     description: Fragment duration 30 -> 45s
-    cost: 150
+    cost: 300
     requiresSkillId: 
     unlocked: 0
   - id: fragment_beacon
-    displayName: Fragment Beacon
-    description: Direction arrow + Countdown on HUD
-    cost: 300
+    displayName: Magnet
+    description: Magnet for Fargment
+    cost: 400
     requiresSkillId: fragment_timer_extend
     unlocked: 0
   - id: pattern_analyzer
     displayName: Pattern Analyzer
     description: "Resistance per death \xD72"
-    cost: 300
+    cost: 600
     requiresSkillId: 
     unlocked: 0
   - id: resistance_cap
     displayName: Deep Immunity
     description: Max resistance 50% -> 70%
-    cost: 600
+    cost: 750
     requiresSkillId: pattern_analyzer
     unlocked: 0
   - id: corruption_shield
@@ -2366,6 +2366,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3038196977738496041, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 4342498342518032638, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
       propertyPath: player
       value: 
@@ -2427,6 +2431,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
+--- !u!1 &1800307334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1800307335}
+  m_Layer: 0
+  m_Name: FlapEntranceTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1800307335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1800307334}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1881160665}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1862634223 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4577927303189727671, guid: 2d34f9509f493a94e887dff332307a1f, type: 3}
@@ -2472,6 +2507,7 @@ Transform:
   - {fileID: 1363811339}
   - {fileID: 871764728}
   - {fileID: 130708801}
+  - {fileID: 1800307335}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1929572830

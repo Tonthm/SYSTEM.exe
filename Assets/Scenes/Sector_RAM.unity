@@ -439,6 +439,10 @@ PrefabInstance:
       propertyPath: sectorName
       value: RAM
       objectReference: {fileID: 0}
+    - target: {fileID: 4961600321176391534, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
+      propertyPath: pauseMenu
+      value: 
+      objectReference: {fileID: 1780885975}
     - target: {fileID: 4984844676537692611, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2136,6 +2140,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12e586e9788ac7246b84586ca60ce382, type: 3}
+--- !u!114 &1780885975 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2122074498130872047, guid: ba594c371d67ec64ab7ce8434e26efaa, type: 3}
+  m_PrefabInstance: {fileID: 354862823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3046795621af903479ac70eaffd5aa55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseMenuUI
 --- !u!1 &1881160664
 GameObject:
   m_ObjectHideFlags: 0

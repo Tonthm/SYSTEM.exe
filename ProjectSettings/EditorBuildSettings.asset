@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Sector_RAM.unity
     guid: 3b71b2a174f69ea4fbd174ff4b2188ad
   - enabled: 1
+    path: Assets/Scenes/Sector_BonusFlap.unity
+    guid: 454b3e7f7df80574c847065851c7f9cc
+  - enabled: 1
     path: Assets/Scenes/Sector_Registry.unity
     guid: 1c852fe786da96744af2fdad040b7f3b
   - enabled: 1

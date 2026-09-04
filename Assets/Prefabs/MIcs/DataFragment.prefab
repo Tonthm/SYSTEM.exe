@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 82101737723468789}
   - component: {fileID: 7319059341063349370}
   - component: {fileID: 6226134237352275369}
+  - component: {fileID: 8093336086750068027}
   m_Layer: 0
   m_Name: DataFragment
   m_TagString: Fragment
@@ -160,3 +161,30 @@ MonoBehaviour:
   blinkWarningTime: 5
   blinkInterval: 0.15
   spriteRenderer: {fileID: 82101737723468789}
+--- !u!50 &8093336086750068027
+Rigidbody2D:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6752170078945371596}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDamping: 0
+  m_AngularDamping: 0.05
+  m_GravityScale: 0.01
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
